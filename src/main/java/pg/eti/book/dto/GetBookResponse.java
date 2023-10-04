@@ -6,6 +6,8 @@ public class GetBookResponse {
 
 	private String title;
 
+	private String ISBN;
+
 	private String author;
 
 	private int numberOfPages;
