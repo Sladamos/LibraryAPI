@@ -1,4 +1,4 @@
-package pg.eti.book.entity.impl;
+package pg.eti.book.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
