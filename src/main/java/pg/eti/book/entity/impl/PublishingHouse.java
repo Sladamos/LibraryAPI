@@ -3,14 +3,15 @@ package pg.eti.book.entity.impl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import pg.eti.literature.api.LiteraturePublisher;
+import pg.eti.literature.api.InvulnerableInformer;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PublishingHouse implements LiteraturePublisher {
+public class PublishingHouse implements InvulnerableInformer {
 
 	private String name;
 
@@ -20,14 +21,14 @@ public class PublishingHouse implements LiteraturePublisher {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(getPublisherInfo());
-		return builder.toString();
-		//builder.append()
+		String booksInfo = books.stream()
+				.map(Book::getInvulnerableInfo)
+				.collect(Collectors.joining("\nBooks published by this house:\n", "\n", ""));
+		return getInvulnerableInfo() + booksInfo;
 	}
 
 	@Override
-	public String getPublisherInfo() {
+	public String getInvulnerableInfo() {
 		return String.format("PublishingHouse(name=%s, creationYear=%d)",
 				name, creationYear);
 	}
