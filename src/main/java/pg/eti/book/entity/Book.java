@@ -7,6 +7,8 @@ import pg.eti.literature.entity.Literature;
 import java.util.List;
 
 @SuperBuilder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

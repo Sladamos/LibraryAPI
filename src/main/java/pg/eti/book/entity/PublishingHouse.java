@@ -1,8 +1,6 @@
 package pg.eti.book.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pg.eti.literature.api.InvulnerableInformer;
 
 import java.util.List;
@@ -11,6 +9,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class PublishingHouse implements InvulnerableInformer {
 
 	private String name;
