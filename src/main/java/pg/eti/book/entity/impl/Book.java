@@ -1,4 +1,4 @@
-package pg.eti.book.entity;
+package pg.eti.book.entity.impl;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -9,6 +9,8 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Book extends Literature {
 
 	private String author;
@@ -18,4 +20,10 @@ public class Book extends Literature {
 	private List<String> genres;
 
 	private PublishingHouse publishingHouse;
+//
+//	@Override
+//	public String toString() {
+//		return String.format("Book(author=%s, ISBN=%s, genres=%s,  publishingHouse=%s )",
+//				name, creationYear);
+//	}
 }

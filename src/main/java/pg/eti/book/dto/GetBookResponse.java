@@ -1,7 +1,5 @@
 package pg.eti.book.dto;
 
-import pg.eti.book.entity.PublishingHouse;
-
 import java.util.List;
 
 public class GetBookResponse {
