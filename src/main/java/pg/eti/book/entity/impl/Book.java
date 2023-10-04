@@ -9,8 +9,8 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class Book extends Literature {
 
 	private String author;
@@ -20,10 +20,4 @@ public class Book extends Literature {
 	private List<String> genres;
 
 	private PublishingHouse publishingHouse;
-//
-//	@Override
-//	public String toString() {
-//		return String.format("Book(author=%s, ISBN=%s, genres=%s,  publishingHouse=%s )",
-//				name, creationYear);
-//	}
 }
