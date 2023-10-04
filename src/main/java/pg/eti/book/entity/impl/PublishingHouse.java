@@ -21,10 +21,19 @@ public class PublishingHouse implements InvulnerableInformer {
 
 	@Override
 	public String toString() {
-		String booksInfo = books.stream()
+		StringBuilder builder = new StringBuilder();
+		String invulnerableInfo = getInvulnerableInfo();
+		builder.append(invulnerableInfo, 0, invulnerableInfo.length() - 1);
+		builder.append(", ");
+		String booksInfo = getInfoAboutBooks(")");
+		builder.append(booksInfo);
+		return builder.toString();
+	}
+
+	private String getInfoAboutBooks(String suffix) {
+		return books.stream()
 				.map(Book::getInvulnerableInfo)
-				.collect(Collectors.joining("\nBooks published by this house:\n", "\n", ""));
-		return getInvulnerableInfo() + booksInfo;
+				.collect(Collectors.joining("\n\t", "books=\n\t", suffix));
 	}
 
 	@Override
