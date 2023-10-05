@@ -13,7 +13,7 @@ public class Main {
 		InitializeData initializeData = new InitializeData();
 		Collection<PublishingHouse> publishingHouses = initializeData.initializeData();
 		publishingHouses.forEach(System.out::println);
-		taskWithSet(publishingHouses);
+		Set<Book> bookSet = taskWithSet(publishingHouses);
 	}
 
 	private static Set<Book> taskWithSet(Collection<PublishingHouse> publishingHouses) {
@@ -22,5 +22,21 @@ public class Main {
 				.collect(Collectors.toSet());
 		bookSet.stream().forEach(System.out::println);
 		return bookSet;
+	}
+
+	private static void taskWithFilter() {
+
+	}
+
+	private static void taskWithDTO() {
+
+	}
+
+	private static void taskWithSerialization() {
+
+	}
+
+	private static void taskWithParallel() {
+
 	}
 }
