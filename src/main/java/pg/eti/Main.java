@@ -13,8 +13,14 @@ public class Main {
 		InitializeData initializeData = new InitializeData();
 		Collection<PublishingHouse> publishingHouses = initializeData.initializeData();
 		publishingHouses.forEach(System.out::println);
+		taskWithSet(publishingHouses);
+	}
+
+	private static Set<Book> taskWithSet(Collection<PublishingHouse> publishingHouses) {
 		Set<Book> bookSet = publishingHouses.stream()
 				.flatMap(el -> el.getBooks().stream())
 				.collect(Collectors.toSet());
+		bookSet.stream().forEach(System.out::println);
+		return bookSet;
 	}
 }

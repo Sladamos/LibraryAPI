@@ -8,6 +8,8 @@ import pg.eti.literature.api.InvulnerableInformer;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Getter
+@Setter
 @ToString
 public abstract class Literature implements InvulnerableInformer {
 

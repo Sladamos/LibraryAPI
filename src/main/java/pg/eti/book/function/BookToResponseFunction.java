@@ -8,6 +8,7 @@ import java.util.function.Function;
 public class BookToResponseFunction implements Function<Book, GetBookResponse> {
 	@Override
 	public GetBookResponse apply(Book book) {
-		return GetBookResponse.b;
+		throw new RuntimeException();
+		//return GetBookResponse.;
 	}
 }
