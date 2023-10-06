@@ -1,23 +1,27 @@
 package pg.eti.serialization;
 
+import lombok.AllArgsConstructor;
+
 import java.io.*;
 import java.util.Collection;
 
-public class FileSerializer<T extends Serializable> {
-	public void serializeToFile(Collection<T> seriallizableCollection, String fileName) {
-		try (FileOutputStream os = new FileOutputStream(fileName);
-		     ObjectOutputStream oos = new ObjectOutputStream(os)) {
-			oos.writeObject(seriallizableCollection);
+@AllArgsConstructor
+public class FileSerializer {
+
+	private final CollectionsSerializer collectionsSerializer;
+
+	public <T extends Serializable> void serializeToFile(Collection<T> seriallizableCollection, String fileName) {
+		try (FileOutputStream os = new FileOutputStream(fileName)) {
+			collectionsSerializer.saveToOutputStream(os, seriallizableCollection);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public Collection<T> serializeFromFile(String fileName) {
-		try (FileInputStream is = new FileInputStream(fileName);
-		     ObjectInputStream ois = new ObjectInputStream(is)) {
-			return (Collection<T>) ois.readObject();
-		} catch (IOException | ClassNotFoundException e) {
+	public <T extends Serializable> Collection<T> serializeFromFile(String fileName) {
+		try (FileInputStream is = new FileInputStream(fileName)) {
+			return collectionsSerializer.loadFromInputStream(is);
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}

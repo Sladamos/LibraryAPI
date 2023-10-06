@@ -7,6 +7,7 @@ import pg.eti.book.function.BookToResponseFunction;
 import pg.eti.initialize.InitializeData;
 import pg.eti.literature.entity.Literature;
 import pg.eti.serialization.FileSerializer;
+import pg.eti.serialization.CollectionsSerializerImpl;
 
 import java.util.*;
 import java.util.concurrent.ForkJoinPool;
@@ -55,7 +56,7 @@ public class Main {
 	private static void taskWithSerialization(Collection<PublishingHouse> publishingHouses) {
 		System.out.println("Task with serialization");
 		publishingHouses.forEach(System.out::println);
-		FileSerializer<PublishingHouse> publishingHouseFileSerializer = new FileSerializer<>();
+		FileSerializer publishingHouseFileSerializer = new FileSerializer(new CollectionsSerializerImpl());
 		publishingHouseFileSerializer.serializeToFile(publishingHouses, "houses");
 		Collection<PublishingHouse> readedHouses = publishingHouseFileSerializer.serializeFromFile("houses");
 		System.out.println("Serialization finished");
