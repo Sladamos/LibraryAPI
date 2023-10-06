@@ -14,9 +14,9 @@ public class FileSerializer<T extends Serializable> {
 	}
 
 	public Collection<T> serializeFromFile(String fileName) {
-		try (FileInputStream os = new FileInputStream(fileName);
-		     ObjectInputStream oos = new ObjectInputStream(os)) {
-			return (Collection<T>) oos.readObject();
+		try (FileInputStream is = new FileInputStream(fileName);
+		     ObjectInputStream ois = new ObjectInputStream(is)) {
+			return (Collection<T>) ois.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
