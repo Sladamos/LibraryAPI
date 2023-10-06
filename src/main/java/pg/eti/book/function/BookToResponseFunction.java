@@ -8,7 +8,13 @@ import java.util.function.Function;
 public class BookToResponseFunction implements Function<Book, GetBookResponse> {
 	@Override
 	public GetBookResponse apply(Book book) {
-		throw new RuntimeException();
-		//return GetBookResponse.;
+		return GetBookResponse.builder()
+				.author(book.getAuthor())
+				.title(book.getTitle())
+				.ISBN(book.getISBN())
+				.genres(book.getGenres())
+				.publishingHouse(book.getPublishingHouse().getName())
+				.numberOfPages(book.getNumberOfPages())
+				.build();
 	}
 }

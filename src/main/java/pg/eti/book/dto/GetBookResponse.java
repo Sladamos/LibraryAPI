@@ -1,10 +1,12 @@
 package pg.eti.book.dto;
 
 import lombok.Builder;
+import lombok.ToString;
 
 import java.util.List;
 
 @Builder
+@ToString
 public class GetBookResponse {
 
 	private String title;

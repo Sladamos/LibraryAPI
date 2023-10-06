@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import pg.eti.literature.entity.Literature;
 
+import java.io.Serializable;
 import java.util.List;
 
 @SuperBuilder
@@ -12,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Book extends Literature {
+public class Book extends Literature implements Serializable {
 
 	private String author;
 

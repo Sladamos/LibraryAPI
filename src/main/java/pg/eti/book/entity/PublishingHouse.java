@@ -3,6 +3,7 @@ package pg.eti.book.entity;
 import lombok.*;
 import pg.eti.literature.api.InvulnerableInformer;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 @Builder
 @Getter
 @Setter
-public class PublishingHouse implements InvulnerableInformer {
+public class PublishingHouse implements InvulnerableInformer, Serializable {
 
 	private String name;
 
