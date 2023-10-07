@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@ToString(callSuper = true)
 @Table(name = "books")
 public class Book extends Literature {
 
@@ -29,21 +30,4 @@ public class Book extends Literature {
 	@ManyToOne
 	@JoinColumn(name = "publishing_house")
 	private PublishingHouse publishingHouse;
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		String invulnerableInfo = getInvulnerableInfo();
-		builder.append(invulnerableInfo, 0, invulnerableInfo.length() - 1);
-		builder.append(", publishingHouse=");
-		builder.append(publishingHouse.getInvulnerableInfo());
-		builder.append(")");
-		return builder.toString();
-	}
-
-	@Override
-	public String getInvulnerableInfo() {
-		return String.format("Book(super=%s, author=%s, ISBN=%s, genres=%s)"
-		, super.toString(), author, ISBN, genres);
-	}
 }

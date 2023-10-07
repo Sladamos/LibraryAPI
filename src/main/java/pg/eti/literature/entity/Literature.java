@@ -3,7 +3,6 @@ package pg.eti.literature.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import pg.eti.literature.api.InvulnerableInformer;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -18,7 +17,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "literatures")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Literature implements InvulnerableInformer, Serializable {
+public abstract class Literature implements Serializable {
 
 	@Id
 	private UUID id;
