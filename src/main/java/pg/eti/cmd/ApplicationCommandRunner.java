@@ -10,6 +10,7 @@ import pg.eti.shutdown.ApplicationShutdownManager;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.UUID;
 
 @Component
 public class ApplicationCommandRunner implements CommandLineRunner {
@@ -46,7 +47,12 @@ public class ApplicationCommandRunner implements CommandLineRunner {
         commands.put("list_all_publishing_houses", () -> publishingHouseService.findAll().forEach(System.out::println));
         commands.put("list_all_books", () -> bookService.findAll().forEach(System.out::println));
         //commands.put("add_book");
-        //commands.put("delete_book");
+        commands.put("delete_book", () -> {
+            System.out.println("Provide UUID");
+            UUID id = UUID.fromString(scanner.next());
+            bookService.delete(id);
+            System.out.println("Book removed properly.");
+        });
         return commands;
     }
 
@@ -57,7 +63,11 @@ public class ApplicationCommandRunner implements CommandLineRunner {
         while (isProgramLaunched) {
             String command = scanner.next();
             if (commands.containsKey(command)) {
-                commands.get(command).run();
+                try {
+                    commands.get(command).run();
+                } catch (Exception ignored) {
+                    System.out.println("Bad command");
+                }
             } else {
                 System.out.println("Bad command");
             }
