@@ -1,10 +1,13 @@
 package pg.eti.book.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import pg.eti.literature.entity.Literature;
 
-import java.io.Serializable;
 import java.util.List;
 
 @SuperBuilder
@@ -13,7 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Book extends Literature implements Serializable {
+@Entity
+@Table(name = "books")
+public class Book extends Literature {
 
 	private String author;
 
@@ -21,6 +26,8 @@ public class Book extends Literature implements Serializable {
 
 	private List<String> genres;
 
+	@ManyToOne
+	@JoinColumn(name = "publishing_house")
 	private PublishingHouse publishingHouse;
 
 	@Override

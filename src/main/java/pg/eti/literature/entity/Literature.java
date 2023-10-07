@@ -1,8 +1,12 @@
 package pg.eti.literature.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import pg.eti.literature.api.InvulnerableInformer;
+
+import java.io.Serializable;
+import java.util.UUID;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -11,7 +15,13 @@ import pg.eti.literature.api.InvulnerableInformer;
 @Getter
 @Setter
 @ToString
-public abstract class Literature implements InvulnerableInformer {
+@Entity
+@Table(name = "literatures")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Literature implements InvulnerableInformer, Serializable {
+
+	@Id
+	private UUID id;
 
 	private String title;
 
