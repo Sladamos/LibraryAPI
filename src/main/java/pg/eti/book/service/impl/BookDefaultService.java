@@ -1,49 +1,63 @@
 package pg.eti.book.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pg.eti.book.entity.Book;
 import pg.eti.book.entity.PublishingHouse;
+import pg.eti.book.repository.api.BookRepository;
+import pg.eti.book.repository.api.PublishingHouseRepository;
 import pg.eti.book.service.api.BookService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class BookDefaultService implements BookService {
 
-    private final
+    private final BookRepository repository;
 
-    @Override
-    public List<Book> findAll() {
-        return null;
+    private final PublishingHouseRepository publishingHouseRepository;
+
+    @Autowired
+    public BookDefaultService(BookRepository repository, PublishingHouseRepository publishingHouseRepository) {
+        this.repository = repository;
+        this.publishingHouseRepository = publishingHouseRepository;
     }
 
     @Override
     public Optional<Book> find(UUID id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override
     public Optional<Book> find(PublishingHouse publishingHouse, UUID id) {
-        return Optional.empty();
+        return repository.findByIdAndPublishingHouse(id, publishingHouse);
     }
 
     @Override
-    public Optional<List<Book>> findAllByPublishingHouse(PublishingHouse publishingHouse) {
-        return Optional.empty();
+    public List<Book> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId) {
+        return publishingHouseRepository.findById(publishingHouseId)
+                .map(repository::findAllByPublishingHouse);
     }
 
     @Override
     public void create(Book book) {
-
+        repository.save(book);
     }
 
     @Override
     public void update(Book book) {
-
+        repository.save(book);
     }
 
     @Override
     public void delete(UUID id) {
-
+        repository.findById(id).ifPresent(repository::delete);
     }
 }

@@ -8,10 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BookService {
-    List<Book> findAll();
     Optional<Book> find(UUID id);
     Optional<Book> find(PublishingHouse publishingHouse, UUID id);
-    Optional<List<Book>> findAllByPublishingHouse(PublishingHouse publishingHouse);
+    List<Book> findAll();
+    Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId);
     void create(Book book);
     void update(Book book);
     void delete(UUID id);
