@@ -18,6 +18,7 @@ public class PublishingHouse implements InvulnerableInformer, Serializable {
 
 	private int creationYear;
 
+	@EqualsAndHashCode.Exclude
 	private List<Book> books;
 
 	@Override
