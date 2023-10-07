@@ -23,7 +23,7 @@ public class InitializeData {
 				.books(books)
 				.build();
 
-		Book dzienSmokaBook = Book.builder()
+		Book dragonDayBook = Book.builder()
 				.author("Richard A. Knaak")
 				.ISBN("9788367323000")
 				.genres(new ArrayList<>(Arrays.asList("Fantasy", "Fiction")))
@@ -31,7 +31,7 @@ public class InitializeData {
 				.title("World of Warcraft: Dzień smoka")
 				.numberOfPages(374)
 				.build();
-		books.add(dzienSmokaBook);
+		books.add(dragonDayBook);
 
 		Book jainaProudmooreBook = Book.builder()
 				.author("Christie Golden")
@@ -65,7 +65,7 @@ public class InitializeData {
 				.books(books)
 				.build();
 
-		Book syzyfowePraceBook = Book.builder()
+		Book laborsOfSisyphusBook = Book.builder()
 				.author("Stefan Żeromski")
 				.ISBN("9788377916148")
 				.genres(new ArrayList<>(Arrays.asList("Novel", "Fiction")))
@@ -73,9 +73,9 @@ public class InitializeData {
 				.title("Syzyfowe Prace")
 				.numberOfPages(192)
 				.build();
-		books.add(syzyfowePraceBook);
+		books.add(laborsOfSisyphusBook);
 
-		Book kamiennaPulapkaBook = Book.builder()
+		Book stoneTrapBook = Book.builder()
 				.author("Krzysztof Petek")
 				.ISBN("9788382797190")
 				.genres(new ArrayList<>(List.of("Crime novel")))
@@ -83,7 +83,7 @@ public class InitializeData {
 				.title("Kamienna Pułapka")
 				.numberOfPages(164)
 				.build();
-		books.add(kamiennaPulapkaBook);
+		books.add(stoneTrapBook);
 
 		return publishingHouse;
 	}
