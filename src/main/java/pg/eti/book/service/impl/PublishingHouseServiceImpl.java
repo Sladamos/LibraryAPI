@@ -1,6 +1,7 @@
 package pg.eti.book.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pg.eti.book.entity.PublishingHouse;
 import pg.eti.book.repository.api.PublishingHouseRepository;
 import pg.eti.book.service.api.PublishingHouseService;
@@ -8,6 +9,7 @@ import pg.eti.book.service.api.PublishingHouseService;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class PublishingHouseServiceImpl implements PublishingHouseService {
 
     private final PublishingHouseRepository repository;
