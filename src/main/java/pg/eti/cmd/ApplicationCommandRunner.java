@@ -43,6 +43,10 @@ public class ApplicationCommandRunner implements CommandLineRunner {
         Map<String, Runnable> commands = new HashMap<>();
         commands.put("print", () -> this.commands.keySet().forEach(System.out::println));
         commands.put("exit", this::disableProgramFunction);
+        commands.put("list_all_publishing_houses", () -> publishingHouseService.findAll().forEach(System.out::println));
+        commands.put("list_all_books", () -> bookService.findAll().forEach(System.out::println));
+        //commands.put("add_book");
+        //commands.put("delete_book");
         return commands;
     }
 
