@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pg.eti.book.service.api.BookService;
 import pg.eti.book.service.api.PublishingHouseService;
+import pg.eti.shutdown.ApplicationShutdownManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,8 @@ import java.util.Scanner;
 
 @Component
 public class ApplicationCommandRunner implements CommandLineRunner {
+
+    private final ApplicationShutdownManager applicationShutdownManager;
 
     private final BookService bookService;
 
@@ -25,18 +28,21 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 
 
     @Autowired
-    public ApplicationCommandRunner(BookService bookService, PublishingHouseService publishingHouseService) {
-        isProgramLaunched = false;
+    public ApplicationCommandRunner(ApplicationShutdownManager applicationShutdownManager,
+                                    BookService bookService,
+                                    PublishingHouseService publishingHouseService) {
+        this.applicationShutdownManager = applicationShutdownManager;
         this.bookService = bookService;
         this.publishingHouseService = publishingHouseService;
-        scanner = new Scanner(System.in);
         this.commands = createCommands();
+        scanner = new Scanner(System.in);
+        isProgramLaunched = false;
     }
 
     private Map<String, Runnable> createCommands() {
         Map<String, Runnable> commands = new HashMap<>();
         commands.put("print", () -> this.commands.keySet().forEach(System.out::println));
-        commands.put("exit", () -> this.isProgramLaunched = false);
+        commands.put("exit", this::disableProgramFunction);
         return commands;
     }
 
@@ -52,5 +58,10 @@ public class ApplicationCommandRunner implements CommandLineRunner {
                 System.out.println("Bad command");
             }
         }
+    }
+
+    private void disableProgramFunction() {
+        isProgramLaunched = false;
+        applicationShutdownManager.initiateShutdown(200);
     }
 }
