@@ -42,13 +42,14 @@ public class ApplicationCommandRunner implements CommandLineRunner {
     private Map<String, Runnable> createCommands() {
         Map<String, Runnable> commands = new HashMap<>();
         commands.put("print", () -> this.commands.keySet().stream()
+                .map(el -> el.substring(0, 1).toUpperCase() + el.substring(1))
                 .sorted(Comparator.comparingInt(String::length))
                 .forEach(System.out::println));
         commands.put("exit", this::disableProgramFunction);
-        commands.put("list_all_publishing_houses", () -> publishingHouseService.findAll().forEach(System.out::println));
-        commands.put("list_all_books", () -> bookService.findAll().forEach(System.out::println));
-        commands.put("add_book", () -> {
-            commands.get("list_all_publishing_houses").run();
+        commands.put("list all publishing houses", () -> publishingHouseService.findAll().forEach(System.out::println));
+        commands.put("list all books", () -> bookService.findAll().forEach(System.out::println));
+        commands.put("add book", () -> {
+            commands.get("list all publishing houses").run();
             System.out.println("Provide publishing house ID");
             Optional<PublishingHouse> publishingHouse = publishingHouseService.find(UUID.fromString(scanner.nextLine()));
             if(publishingHouse.isPresent()) {
@@ -65,7 +66,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
             }
         });
 
-        commands.put("delete_book", () -> {
+        commands.put("delete book", () -> {
             System.out.println("Provide ID");
             UUID id = UUID.fromString(scanner.nextLine());
             bookService.delete(id);
@@ -79,7 +80,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
         isProgramLaunched = true;
         commands.get("print").run();
         while (isProgramLaunched) {
-            String command = scanner.nextLine();
+            String command = scanner.nextLine().toLowerCase();
             if (commands.containsKey(command)) {
                 try {
                     commands.get(command).run();
