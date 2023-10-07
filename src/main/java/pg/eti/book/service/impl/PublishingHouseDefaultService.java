@@ -10,12 +10,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class PublishingHouseServiceImpl implements PublishingHouseService {
+public class PublishingHouseDefaultService implements PublishingHouseService {
 
     private final PublishingHouseRepository repository;
 
     @Autowired
-    public PublishingHouseServiceImpl(PublishingHouseRepository repository) {
+    public PublishingHouseDefaultService(PublishingHouseRepository repository) {
         this.repository = repository;
     }
 
