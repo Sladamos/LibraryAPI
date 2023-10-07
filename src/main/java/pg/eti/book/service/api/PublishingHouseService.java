@@ -6,8 +6,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PublishingHouseService {
-
     Optional<PublishingHouse> find(UUID id);
-
     void create(PublishingHouse publishingHouse);
 }
