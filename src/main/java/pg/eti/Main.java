@@ -1,5 +1,6 @@
 package pg.eti;
 
+import pg.eti.book.comparator.GetBookResponseComparator;
 import pg.eti.book.dto.GetBookResponse;
 import pg.eti.book.entity.Book;
 import pg.eti.book.entity.PublishingHouse;
@@ -51,10 +52,11 @@ public class Main {
 	}
 
 	private static void taskWithDTO(Collection<Book> bookCollection) {
+		System.out.println("Task with DTO");
 		BookToResponseFunction dtoFunction = new BookToResponseFunction();
 		List<GetBookResponse> bookResponses = bookCollection.stream()
 				.map(dtoFunction)
-				.sorted()
+				.sorted(new GetBookResponseComparator())
 				.toList();
 		bookResponses.forEach(System.out::println);
 	}

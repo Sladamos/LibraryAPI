@@ -1,11 +1,14 @@
 package pg.eti.serialization;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collection;
 
-@AllArgsConstructor
+@Builder
 public class FileSerializer {
 
 	private final CollectionsSerializer collectionsSerializer;
