@@ -43,6 +43,16 @@ public class InitializeData {
 				.build();
 		books.add(jainaProudmooreBook);
 
+		Book riseOfTheLichKingBook = Book.builder()
+				.author("Christie Golden")
+				.ISBN("9788365743251")
+				.genres(new ArrayList<>(Arrays.asList("Fantasy", "Science Fiction")))
+				.publishingHouse(publishingHouse)
+				.title("World of Warcraft: Arthas. Przebudzenie Króla Lisza")
+				.numberOfPages(368)
+				.build();
+		books.add(riseOfTheLichKingBook);
+
 		return publishingHouse;
 	}
 
