@@ -1,4 +1,4 @@
-package pg.eti.book.task;
+package pg.eti.book.function.task;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
