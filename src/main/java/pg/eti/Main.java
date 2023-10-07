@@ -4,14 +4,21 @@ import pg.eti.book.dto.GetBookResponse;
 import pg.eti.book.entity.Book;
 import pg.eti.book.entity.PublishingHouse;
 import pg.eti.book.function.BookToResponseFunction;
+import pg.eti.book.task.PublishingHouseTask;
+import pg.eti.book.task.SelfPrintablePublishingHouseTask;
 import pg.eti.initialize.InitializeData;
 import pg.eti.literature.entity.Literature;
-import pg.eti.serialization.FileSerializer;
+import pg.eti.parallel.ParallelTaskExecutioner;
+import pg.eti.parallel.ParallelTaskExecutionerImpl;
 import pg.eti.serialization.CollectionsSerializerImpl;
+import pg.eti.serialization.FileSerializer;
 
-import java.util.*;
-import java.util.concurrent.ForkJoinPool;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -24,7 +31,6 @@ public class Main {
 		taskWithDTO(bookSet);
 		taskWithSerialization(publishingHouses);
 		taskWithParallel(publishingHouses);
-		//TODO natural order - repair one task
 	}
 
 	private static Set<Book> taskWithSet(Collection<PublishingHouse> publishingHouses) {
@@ -44,48 +50,41 @@ public class Main {
 				.forEach(System.out::println);
 	}
 
-	private static Collection<GetBookResponse> taskWithDTO(Collection<Book> bookCollection) {
+	private static void taskWithDTO(Collection<Book> bookCollection) {
 		BookToResponseFunction dtoFunction = new BookToResponseFunction();
 		List<GetBookResponse> bookResponses = bookCollection.stream()
 				.map(dtoFunction)
+				.sorted()
 				.toList();
 		bookResponses.forEach(System.out::println);
-		return bookResponses;
 	}
 
 	private static void taskWithSerialization(Collection<PublishingHouse> publishingHouses) {
 		System.out.println("Task with serialization");
 		publishingHouses.forEach(System.out::println);
-		FileSerializer publishingHouseFileSerializer = new FileSerializer(new CollectionsSerializerImpl());
+		FileSerializer publishingHouseFileSerializer = FileSerializer.builder()
+				.collectionsSerializer(new CollectionsSerializerImpl())
+				.build();
 		publishingHouseFileSerializer.serializeToFile(publishingHouses, "houses");
-		Collection<PublishingHouse> readedHouses = publishingHouseFileSerializer.serializeFromFile("houses");
+		Collection<PublishingHouse> readHouses = publishingHouseFileSerializer.serializeFromFile("houses");
 		System.out.println("Serialization finished");
-		readedHouses.forEach(System.out::println);
+		readHouses.forEach(System.out::println);
 	}
 
 	private static void taskWithParallel(Collection<PublishingHouse> publishingHouses) {
-		//TODO refactor
 		System.out.println("Parallel task");
-		ForkJoinPool pool = new ForkJoinPool(4);
-		pool.submit(() ->
-			publishingHouses.parallelStream().forEach(Main::publishingHouseTask));
-		pool.shutdown();
-		try {
-			pool.awaitTermination(30, TimeUnit.SECONDS);
-		} catch (InterruptedException ignored) {
-		}
+		ParallelTaskExecutioner executioner = new ParallelTaskExecutionerImpl();
+		Supplier<PublishingHouseTask> publishingHouseTaskGenerator = createPublishingHouseTasksGenerator();
+		executioner.submit(() ->
+			publishingHouses.parallelStream().forEach(publishingHouseTaskGenerator.get()));
+		executioner.shutdown();
+		executioner.awaitTermination(30, TimeUnit.SECONDS);
 	}
 
-	private static void publishingHouseTask(PublishingHouse publishingHouse) {
-		for(int i = 0; i < 3; i++) {
-			System.out.println(publishingHouse);
-			double delay = Math.random() * 2000;
-			try {
-				Thread.sleep((long) delay);
-				System.out.println("Iteration ended, I am" + publishingHouse.getInvulnerableInfo());
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
-		}
+	private static Supplier<PublishingHouseTask> createPublishingHouseTasksGenerator() {
+		return  () -> SelfPrintablePublishingHouseTask.builder()
+				.maxDelayInMilliseconds(2000)
+				.numberOfIterations(3)
+				.build();
 	}
 }
