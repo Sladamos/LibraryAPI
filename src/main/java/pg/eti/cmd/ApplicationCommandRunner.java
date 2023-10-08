@@ -3,6 +3,8 @@ package pg.eti.cmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pg.eti.book.comparator.BookComparator;
+import pg.eti.book.comparator.PublishingHouseComparator;
 import pg.eti.book.entity.Book;
 import pg.eti.book.entity.PublishingHouse;
 import pg.eti.book.service.api.BookService;
@@ -45,17 +47,31 @@ public class ApplicationCommandRunner implements CommandLineRunner {
                 .map(command -> command.substring(0, 1).toUpperCase() + command.substring(1))
                 .sorted(Comparator.comparingInt(String::length))
                 .forEach(System.out::println));
+
         commands.put("exit", this::disableProgramFunction);
-        commands.put("list all publishing houses", () -> publishingHouseService.findAll().forEach(System.out::println));
+
+        commands.put("list all publishing houses", () -> publishingHouseService.findAll()
+                .stream()
+                .sorted(new PublishingHouseComparator())
+                .forEach(System.out::println));
+
         commands.put("list everything", () -> publishingHouseService.findAll()
+                .stream()
+                .sorted(new PublishingHouseComparator())
                 .forEach((house) -> {
                 System.out.println(house);
                 bookService.findAll(house)
+                        .stream()
+                        .sorted(new BookComparator())
                         .forEach(book -> System.out.println("\t" + book));
             })
         );
 
-        commands.put("list all books", () -> bookService.findAll().forEach(System.out::println));
+        commands.put("list all books", () -> bookService.findAll()
+                .stream()
+                .sorted(new BookComparator())
+                .forEach(System.out::println));
+
         commands.put("add book", () -> {
             commands.get("list all publishing houses").run();
             System.out.println("Provide publishing house ID");
@@ -66,6 +82,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
                         .id(UUID.fromString(scanner.nextLine()))
                         .title(scanner.nextLine())
                         .author(scanner.nextLine())
+                        .publishingHouse(publishingHouse.get())
                         .build();
                 bookService.create(book);
                 System.out.println("Book created properly");
