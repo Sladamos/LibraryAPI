@@ -42,17 +42,19 @@ public class ApplicationCommandRunner implements CommandLineRunner {
     private Map<String, Runnable> createCommands() {
         Map<String, Runnable> commands = new HashMap<>();
         commands.put("print", () -> this.commands.keySet().stream()
-                .map(el -> el.substring(0, 1).toUpperCase() + el.substring(1))
+                .map(command -> command.substring(0, 1).toUpperCase() + command.substring(1))
                 .sorted(Comparator.comparingInt(String::length))
                 .forEach(System.out::println));
         commands.put("exit", this::disableProgramFunction);
         commands.put("list all publishing houses", () -> publishingHouseService.findAll().forEach(System.out::println));
-        commands.put("list everything", () ->{
-            publishingHouseService.findAll().forEach((el) -> {
-                System.out.println(el);
-                bookService.findAllByPublishingHouse(el.getId()).ifPresent((list) -> list.forEach(book -> System.out.println("\t" + book)));
-            });
-        });
+        commands.put("list everything", () -> publishingHouseService.findAll()
+                .forEach((house) -> {
+                System.out.println(house);
+                bookService.findAll(house)
+                        .forEach(book -> System.out.println("\t" + book));
+            })
+        );
+
         commands.put("list all books", () -> bookService.findAll().forEach(System.out::println));
         commands.put("add book", () -> {
             commands.get("list all publishing houses").run();

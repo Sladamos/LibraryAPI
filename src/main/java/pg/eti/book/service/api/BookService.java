@@ -15,6 +15,8 @@ public interface BookService {
 
     List<Book> findAll();
 
+    List<Book> findAll(PublishingHouse publishingHouse);
+
     Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId);
 
     void create(Book book);
