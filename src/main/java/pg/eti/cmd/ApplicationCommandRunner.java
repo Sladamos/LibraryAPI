@@ -47,6 +47,12 @@ public class ApplicationCommandRunner implements CommandLineRunner {
                 .forEach(System.out::println));
         commands.put("exit", this::disableProgramFunction);
         commands.put("list all publishing houses", () -> publishingHouseService.findAll().forEach(System.out::println));
+        commands.put("list everything", () ->{
+            publishingHouseService.findAll().forEach((el) -> {
+                System.out.println(el);
+                bookService.findAllByPublishingHouse(el.getId()).ifPresent((list) -> list.forEach(book -> System.out.println("\t" + book)));
+            });
+        });
         commands.put("list all books", () -> bookService.findAll().forEach(System.out::println));
         commands.put("add book", () -> {
             commands.get("list all publishing houses").run();
