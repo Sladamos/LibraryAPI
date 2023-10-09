@@ -1,9 +1,6 @@
 package pg.eti.book.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -23,6 +20,7 @@ public class PublishingHouse implements Serializable {
 	@Id
 	private UUID id;
 
+	@Column(unique = true)
 	private String name;
 
 	private int creationYear;
