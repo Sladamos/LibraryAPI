@@ -3,7 +3,6 @@ package pg.eti.book.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pg.eti.book.entity.Book;
-import pg.eti.book.entity.PublishingHouse;
 import pg.eti.book.repository.api.BookRepository;
 import pg.eti.book.repository.api.PublishingHouseRepository;
 import pg.eti.book.service.api.BookService;
@@ -36,11 +35,6 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
-    public List<Book> findAll(PublishingHouse publishingHouse) {
-        return repository.findAllByPublishingHouse(publishingHouse);
-    }
-
-    @Override
     public Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId) {
         return publishingHouseRepository.findById(publishingHouseId)
                 .map(repository::findAllByPublishingHouse);
@@ -57,7 +51,17 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
+    public void update(List<Book> books) {
+        repository.saveAll(books);
+    }
+
+    @Override
     public void delete(UUID id) {
         repository.findById(id).ifPresent(repository::delete);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
     }
 }

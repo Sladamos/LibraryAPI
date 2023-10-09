@@ -1,7 +1,6 @@
 package pg.eti.book.service.api;
 
 import pg.eti.book.entity.Book;
-import pg.eti.book.entity.PublishingHouse;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +10,6 @@ public interface BookService {
 
     List<Book> findAll();
 
-    List<Book> findAll(PublishingHouse publishingHouse);
-
     Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId);
 
     Optional<Book> find(UUID id);
@@ -21,5 +18,9 @@ public interface BookService {
 
     void update(Book book);
 
+    void update(List<Book> books);
+
     void delete(UUID id);
+
+    void deleteAll();
 }

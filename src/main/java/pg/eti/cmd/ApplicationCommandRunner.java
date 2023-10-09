@@ -60,10 +60,10 @@ public class ApplicationCommandRunner implements CommandLineRunner {
                 .sorted(new PublishingHouseComparator())
                 .forEach((house) -> {
                 System.out.println(house);
-                bookService.findAll(house)
-                        .stream()
-                        .sorted(new BookComparator())
-                        .forEach(book -> System.out.println("\t" + book));
+                bookService.findAllByPublishingHouse(house.getId())
+                        .ifPresent(el -> el.stream()
+                                .sorted(new BookComparator())
+                                .forEach(book -> System.out.println("\t" + book)));
             })
         );
 
