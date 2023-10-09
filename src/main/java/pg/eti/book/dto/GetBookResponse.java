@@ -1,15 +1,24 @@
 package pg.eti.book.dto;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
+@Data
 @Builder
-@Getter
-@ToString
 public class GetBookResponse {
+
+	@Data
+	@Builder
+	public static class PublishingHouse {
+
+		private String name;
+
+		private UUID id;
+
+	}
 
 	private String title;
 
@@ -21,5 +30,5 @@ public class GetBookResponse {
 
 	private List<String> genres;
 
-	private String publishingHouse;
+	private PublishingHouse publishingHouse;
 }
