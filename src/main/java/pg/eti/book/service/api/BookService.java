@@ -9,15 +9,13 @@ import java.util.UUID;
 
 public interface BookService {
 
-    Optional<Book> find(UUID id);
-
-    Optional<Book> find(PublishingHouse publishingHouse, UUID id);
-
     List<Book> findAll();
 
     List<Book> findAll(PublishingHouse publishingHouse);
 
     Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId);
+
+    Optional<Book> find(UUID id);
 
     void create(Book book);
 

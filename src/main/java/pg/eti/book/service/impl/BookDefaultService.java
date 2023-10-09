@@ -31,11 +31,6 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
-    public Optional<Book> find(PublishingHouse publishingHouse, UUID id) {
-        return repository.findByIdAndPublishingHouse(id, publishingHouse);
-    }
-
-    @Override
     public List<Book> findAll() {
         return repository.findAll();
     }
