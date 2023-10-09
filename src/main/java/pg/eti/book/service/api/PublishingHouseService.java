@@ -10,7 +10,15 @@ public interface PublishingHouseService {
 
     Optional<PublishingHouse> find(UUID id);
 
+    List<PublishingHouse> findAll();
+
     void create(PublishingHouse publishingHouse);
 
-    List<PublishingHouse> findAll();
+    void update(PublishingHouse publishingHouse);
+
+    void update(List<PublishingHouse> publishingHouses);
+
+    void delete(UUID publishingHouse);
+
+    void deleteAll();
 }

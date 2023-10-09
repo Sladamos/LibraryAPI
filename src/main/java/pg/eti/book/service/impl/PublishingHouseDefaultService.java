@@ -26,12 +26,32 @@ public class PublishingHouseDefaultService implements PublishingHouseService {
     }
 
     @Override
+    public List<PublishingHouse> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public void create(PublishingHouse publishingHouse) {
         repository.save(publishingHouse);
     }
 
     @Override
-    public List<PublishingHouse> findAll() {
-        return repository.findAll();
+    public void update(PublishingHouse publishingHouse) {
+        repository.save(publishingHouse);
+    }
+
+    @Override
+    public void update(List<PublishingHouse> publishingHouses) {
+        repository.saveAll(publishingHouses);
+    }
+
+    @Override
+    public void delete(UUID publishingHouse) {
+        repository.findById(publishingHouse).ifPresent(repository::delete);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
     }
 }
