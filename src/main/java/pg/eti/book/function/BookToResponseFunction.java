@@ -12,7 +12,7 @@ public class BookToResponseFunction implements Function<Book, GetBookResponse> {
 		return GetBookResponse.builder()
 				.author(book.getAuthor())
 				.title(book.getTitle())
-				.ISBN(book.getISBN())
+				.ISBN(book.getIsbn())
 				.genres(book.getGenres())
 				.publishingHouse(GetBookResponse.PublishingHouse.builder()
 						.id(book.getPublishingHouse().getId())

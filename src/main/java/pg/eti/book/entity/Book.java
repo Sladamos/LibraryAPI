@@ -21,7 +21,7 @@ public class Book extends Literature {
 	private String author;
 
 	@Column(unique = true)
-	private String ISBN;
+	private String isbn;
 
 	private List<String> genres;
 
