@@ -10,7 +10,7 @@ import java.util.UUID;
 @Builder
 public class PutBookRequest {
 
-	private UUID id;
+	private UUID publishingHouse;
 
 	private String author;
 
