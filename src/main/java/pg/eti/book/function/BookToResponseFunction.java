@@ -6,6 +6,7 @@ import pg.eti.book.entity.Book;
 import java.util.function.Function;
 
 public class BookToResponseFunction implements Function<Book, GetBookResponse> {
+
 	@Override
 	public GetBookResponse apply(Book book) {
 		return GetBookResponse.builder()
