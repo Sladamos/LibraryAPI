@@ -9,5 +9,5 @@ public class PutPublishingHouseRequest {
 
 	private String name;
 
-	private int creationYear;
+	private Integer creationYear;
 }

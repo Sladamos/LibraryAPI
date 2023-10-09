@@ -23,7 +23,7 @@ public class PublishingHouse implements Serializable {
 	@Column(unique = true)
 	private String name;
 
-	private int creationYear;
+	private Integer creationYear;
 
 	@OneToMany(mappedBy = "publishingHouse")
 	@EqualsAndHashCode.Exclude

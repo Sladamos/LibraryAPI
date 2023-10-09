@@ -4,5 +4,5 @@ public class PatchPublishingHouseRequest {
 
 	private String name;
 
-	private int creationYear;
+	private Integer creationYear;
 }
