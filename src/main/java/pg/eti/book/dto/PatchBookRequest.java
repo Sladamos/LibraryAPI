@@ -15,7 +15,7 @@ public class PatchBookRequest {
 
 	private String isbn;
 
-	private int numberOfPages;
+	private Integer numberOfPages;
 
 	private List<String> genres;
 

@@ -26,7 +26,7 @@ public class GetBookResponse {
 
 	private String author;
 
-	private int numberOfPages;
+	private Integer numberOfPages;
 
 	private List<String> genres;
 

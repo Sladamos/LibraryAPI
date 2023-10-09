@@ -24,5 +24,5 @@ public abstract class Literature implements Serializable {
 
 	private String title;
 
-	private int numberOfPages;
+	private Integer numberOfPages;
 }
