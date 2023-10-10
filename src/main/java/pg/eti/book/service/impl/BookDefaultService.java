@@ -57,6 +57,21 @@ public class BookDefaultService implements BookService {
         repository.save(book);
     }
 
+    @Override
+    public void update(Book book) {
+        repository.save(book);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.findById(id).ifPresent(repository::delete);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
     private void checkIfPublishingHouseIdIsSpecified(UUID id) {
         if (id == null) {
             throw new BookServiceException("Publishing house is not specified");
@@ -82,20 +97,5 @@ public class BookDefaultService implements BookService {
         if (publishingHouse.isEmpty()) {
             throw new BookServiceException("Publishing house doesn't exist");
         }
-    }
-
-    @Override
-    public void update(Book book) {
-        repository.save(book);
-    }
-
-    @Override
-    public void delete(UUID id) {
-        repository.findById(id).ifPresent(repository::delete);
-    }
-
-    @Override
-    public void deleteAll() {
-        repository.deleteAll();
     }
 }
