@@ -6,13 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pg.eti.book.controller.api.PublishingHouseController;
-import pg.eti.book.dto.GetPublishingHouseResponse;
-import pg.eti.book.dto.GetPublishingHousesResponse;
-import pg.eti.book.dto.PatchPublishingHouseRequest;
-import pg.eti.book.dto.PutPublishingHouseRequest;
+import pg.eti.book.dto.*;
 import pg.eti.book.function.PublishingHouseToResponseFunction;
 import pg.eti.book.function.PublishingHousesToResponseFunction;
 import pg.eti.book.service.api.PublishingHouseService;
+import pg.eti.book.service.exception.PublishingHouseServiceException;
 
 import java.util.UUID;
 
@@ -26,11 +24,18 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 
 	private final PublishingHouseToResponseFunction publishingHouseToResponse;
 
+	private final RequestToPublishingHouseFunction requestToPublishingHouse;
+
 	@Autowired
-	public PublishingHouseDefaultController(PublishingHouseService service, PublishingHousesToResponseFunction publishingHousesToResponse, PublishingHouseToResponseFunction publishingHouseToResponse) {
+	public PublishingHouseDefaultController(
+			PublishingHouseService service,
+			PublishingHousesToResponseFunction publishingHousesToResponse,
+			PublishingHouseToResponseFunction publishingHouseToResponse,
+			RequestToPublishingHouseFunction requestToPublishingHouse) {
 		this.service = service;
 		this.publishingHousesToResponse = publishingHousesToResponse;
 		this.publishingHouseToResponse = publishingHouseToResponse;
+		this.requestToPublishingHouse = requestToPublishingHouse;
 	}
 
 	@Override
@@ -47,7 +52,11 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 
 	@Override
 	public void putPublishingHouse(UUID id, PutPublishingHouseRequest request) {
-
+		try {
+			service.create(requestToPublishingHouse.apply(id, request));
+		} catch (PublishingHouseServiceException exception) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+		}
 	}
 
 	@Override

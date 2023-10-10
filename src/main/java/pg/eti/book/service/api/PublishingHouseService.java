@@ -16,8 +16,6 @@ public interface PublishingHouseService {
 
     void update(PublishingHouse publishingHouse);
 
-    void update(List<PublishingHouse> publishingHouses);
-
     void delete(UUID publishingHouse);
 
     void deleteAll();

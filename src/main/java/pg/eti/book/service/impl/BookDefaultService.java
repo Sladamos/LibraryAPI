@@ -90,11 +90,6 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
-    public void update(List<Book> books) {
-        repository.saveAll(books);
-    }
-
-    @Override
     public void delete(UUID id) {
         repository.findById(id).ifPresent(repository::delete);
     }

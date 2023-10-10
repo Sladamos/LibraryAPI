@@ -41,11 +41,6 @@ public class PublishingHouseDefaultService implements PublishingHouseService {
     }
 
     @Override
-    public void update(List<PublishingHouse> publishingHouses) {
-        repository.saveAll(publishingHouses);
-    }
-
-    @Override
     public void delete(UUID publishingHouse) {
         repository.findById(publishingHouse).ifPresent(repository::delete);
     }

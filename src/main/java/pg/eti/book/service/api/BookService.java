@@ -20,8 +20,6 @@ public interface BookService {
 
     void update(Book book);
 
-    void update(List<Book> books);
-
     void delete(UUID id);
 
     void deleteAll();
