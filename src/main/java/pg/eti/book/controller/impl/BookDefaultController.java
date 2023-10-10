@@ -70,7 +70,7 @@ public class BookDefaultController implements BookController {
 		try {
 			service.create(requestToBook.apply(id, request));
 		} catch (BookServiceException exception) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
 		}
 	}
 

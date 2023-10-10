@@ -56,7 +56,7 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 		try {
 			service.create(requestToPublishingHouse.apply(id, request));
 		} catch (PublishingHouseServiceException exception) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
 		}
 	}
 
