@@ -12,6 +12,7 @@ public class BookToResponseFunction implements Function<Book, GetBookResponse> {
 	@Override
 	public GetBookResponse apply(Book book) {
 		return GetBookResponse.builder()
+				.id(book.getId())
 				.author(book.getAuthor())
 				.title(book.getTitle())
 				.ISBN(book.getIsbn())

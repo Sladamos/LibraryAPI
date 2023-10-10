@@ -20,6 +20,8 @@ public class GetBookResponse {
 
 	}
 
+	private UUID id;
+
 	private String title;
 
 	private String ISBN;
