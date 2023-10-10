@@ -33,13 +33,6 @@ public interface BookController {
 			PutBookRequest request
 	);
 
-	@PostMapping("api/books")
-	@ResponseStatus(HttpStatus.CREATED)
-	void createBook(
-			@RequestBody
-			PostBookRequest request
-	);
-
 	@PatchMapping("/api/books/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	void patchBook(

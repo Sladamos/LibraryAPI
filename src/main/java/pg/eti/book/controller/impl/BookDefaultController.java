@@ -12,6 +12,8 @@ import pg.eti.book.dto.PatchBookRequest;
 import pg.eti.book.dto.PutBookRequest;
 import pg.eti.book.function.BookToResponseFunction;
 import pg.eti.book.function.BooksToResponseFunction;
+import pg.eti.book.function.RequestToBookFunction;
+import pg.eti.book.function.UpdateBookWithRequestFunction;
 import pg.eti.book.service.api.BookService;
 
 import java.util.UUID;
@@ -26,14 +28,22 @@ public class BookDefaultController implements BookController {
 
 	private final BooksToResponseFunction booksToResponse;
 
+	private final RequestToBookFunction requestToBook;
+
+	private final UpdateBookWithRequestFunction updateBookWithRequest;
+
 	@Autowired
 	public BookDefaultController(
 			BookService service,
 			BookToResponseFunction bookToResponse,
-			BooksToResponseFunction booksToResponse) {
+			BooksToResponseFunction booksToResponse,
+			RequestToBookFunction requestToBook,
+			UpdateBookWithRequestFunction updateBookWithRequest) {
 		this.service = service;
 		this.bookToResponse = bookToResponse;
 		this.booksToResponse = booksToResponse;
+		this.requestToBook = requestToBook;
+		this.updateBookWithRequest = updateBookWithRequest;
 	}
 
 	@Override
@@ -50,12 +60,18 @@ public class BookDefaultController implements BookController {
 
 	@Override
 	public void putBook(UUID id, PutBookRequest request) {
-		
+		service.create(requestToBook.apply(id, request));
 	}
 
 	@Override
 	public void patchBook(UUID id, PatchBookRequest request) {
-	//
+		service.find(id)
+				.ifPresentOrElse(
+						book -> service.update(updateBookWithRequest.apply(book, request)),
+						() -> {
+							throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+						}
+				);
 	}
 
 	@Override
