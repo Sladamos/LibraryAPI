@@ -1,2 +1,25 @@
-## Get all books
+### Get all books
+
 GET http://localhost:8080/api/books
+
+### Get single book
+
+GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+
+### Get single book, not existing
+
+GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12ezzz
+
+### Get publishing house's books
+
+### Get publishing house's books, books not existing
+
+### Get publishing house's books, publishing house not existing
+
+### Get publishing houses
+
+### Get single publishing house
+
+### Get single publishing house, not existing
+
+### Get single publishing house

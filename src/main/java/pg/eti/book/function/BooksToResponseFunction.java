@@ -17,6 +17,7 @@ public class BooksToResponseFunction implements Function<List<Book>, GetBooksRes
 						.map(book -> GetBooksResponse.Book.builder()
 								.title(book.getTitle())
 								.author(book.getAuthor())
+								.id(book.getId())
 								.build())
 						.toList())
 				.build();
