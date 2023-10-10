@@ -14,6 +14,7 @@ public class PublishingHouseToResponseFunction implements Function<PublishingHou
 		return GetPublishingHouseResponse.builder()
 				.id(publishingHouse.getId())
 				.name(publishingHouse.getName())
+				.creationYear(publishingHouse.getCreationYear())
 				.build();
 	}
 }

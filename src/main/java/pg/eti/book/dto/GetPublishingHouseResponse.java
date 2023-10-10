@@ -12,4 +12,6 @@ public class GetPublishingHouseResponse {
 	private UUID id;
 
 	private String name;
+
+	private Integer creationYear;
 }
