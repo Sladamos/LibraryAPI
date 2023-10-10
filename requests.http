@@ -34,8 +34,6 @@ GET http://localhost:8080/api/books?publishing-house=ansignia
 
 ### Create new publishing house with existing name
 
-### Create new publishing house with existing id
-
 ### Create new book
 
 PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
@@ -102,3 +100,6 @@ content-type: application/json
     "isbn": "9788382797930",
     "genres": ["Drama"]
 }
+
+
+### todo: delete and update
