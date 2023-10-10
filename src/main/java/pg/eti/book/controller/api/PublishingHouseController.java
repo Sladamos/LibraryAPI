@@ -43,7 +43,7 @@ public interface PublishingHouseController {
 	);
 
 
-	@GetMapping("api/publishing-houses/{id}")
+	@DeleteMapping("api/publishing-houses/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	void deletePublishingHouse(
 			@PathVariable("id")

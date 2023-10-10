@@ -33,6 +33,13 @@ public interface BookController {
 			PutBookRequest request
 	);
 
+	@PostMapping("api/books")
+	@ResponseStatus(HttpStatus.CREATED)
+	void createBook(
+			@RequestBody
+			PostBookRequest request
+	);
+
 	@PatchMapping("/api/books/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	void patchBook(
@@ -43,7 +50,7 @@ public interface BookController {
 	);
 
 
-	@GetMapping("api/books/{id}")
+	@DeleteMapping("api/books/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	void deleteBook(
 			@PathVariable("id")
