@@ -50,24 +50,38 @@ public class BookDefaultService implements BookService {
 
     @Override
     public void create(Book book) {
-        if (book.getIsbn() == null) {
-            throw new BookServiceException("ISBN is not specified");
-        }
-        if (book.getPublishingHouse().getId() == null) {
+        checkIfIsbnIsSpecified(book.getIsbn());
+        checkIfPublishingHouseIdIsSpecified(book.getPublishingHouse().getId());
+        checkIfPublishingHouseExists(book.getPublishingHouse().getId());
+        checkIfIsbnIsNotBeingReservedByOtherBook(book.getIsbn(), book.getId());
+        repository.save(book);
+    }
+
+    private void checkIfPublishingHouseIdIsSpecified(UUID id) {
+        if (id == null) {
             throw new BookServiceException("Publishing house is not specified");
         }
+    }
 
-        Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(book.getPublishingHouse().getId());
+    private void checkIfIsbnIsSpecified(String isbn) {
+        if (isbn == null) {
+            throw new BookServiceException("ISBN is not specified");
+        }
+    }
+
+    private void checkIfIsbnIsNotBeingReservedByOtherBook(String isbn, UUID id) {
+        Optional<Book> bookWithSameIsbn = repository.findByIsbn(isbn);
+
+        if (bookWithSameIsbn.isPresent() && !bookWithSameIsbn.get().getId().equals(id)) {
+            throw new BookServiceException("ISBN is already reserved");
+        }
+    }
+
+    private void checkIfPublishingHouseExists(UUID id) {
+        Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(id);
         if (publishingHouse.isEmpty()) {
             throw new BookServiceException("Publishing house doesn't exist");
         }
-        Optional<Book> bookWithSameIsbn = repository.findByIsbn(book.getIsbn());
-
-        if (bookWithSameIsbn.isPresent() && !bookWithSameIsbn.get().getId().equals(book.getId())) {
-            throw new BookServiceException("ISBN is already used");
-        }
-
-        repository.save(book);
     }
 
     @Override
