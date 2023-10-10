@@ -32,7 +32,23 @@ GET http://localhost:8080/api/books?publishing-house=ansignia
 
 ### Create new publishing house
 
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "Greg",
+    "creationYear": 1993
+}
+
 ### Create new publishing house with existing name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "Insignis",
+    "creationYear": 2050
+}
 
 ### Create new book
 

@@ -9,6 +9,7 @@ import pg.eti.book.controller.api.PublishingHouseController;
 import pg.eti.book.dto.*;
 import pg.eti.book.function.PublishingHouseToResponseFunction;
 import pg.eti.book.function.PublishingHousesToResponseFunction;
+import pg.eti.book.function.RequestToPublishingHouseFunction;
 import pg.eti.book.service.api.PublishingHouseService;
 import pg.eti.book.service.exception.PublishingHouseServiceException;
 
