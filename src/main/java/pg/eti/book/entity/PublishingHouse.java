@@ -25,7 +25,7 @@ public class PublishingHouse implements Serializable {
 
 	private Integer creationYear;
 
-	@OneToMany(mappedBy = "publishingHouse")
+	@OneToMany(mappedBy = "publishingHouse", cascade = CascadeType.REMOVE)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private List<Book> books;

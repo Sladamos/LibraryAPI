@@ -60,6 +60,7 @@ public class BookDefaultController implements BookController {
 
 	@Override
 	public void putBook(UUID id, PutBookRequest request) {
+		//TODO; what if incorrect publishing house - check if exist -> do similiart thing with patch
 		service.create(requestToBook.apply(id, request));
 	}
 

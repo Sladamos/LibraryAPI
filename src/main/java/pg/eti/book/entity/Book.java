@@ -26,6 +26,6 @@ public class Book extends Literature {
 	private List<String> genres;
 
 	@ManyToOne
-	@JoinColumn(name = "publishing_house")
+	@JoinColumn(name = "publishing_house_id")
 	private PublishingHouse publishingHouse;
 }
