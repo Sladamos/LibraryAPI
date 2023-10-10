@@ -1,5 +1,7 @@
 package pg.eti.book.controller.api;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pg.eti.book.dto.GetPublishingHouseResponse;
 import pg.eti.book.dto.GetPublishingHousesResponse;
 import pg.eti.book.dto.PatchPublishingHouseRequest;
@@ -9,13 +11,42 @@ import java.util.UUID;
 
 public interface PublishingHouseController {
 
+	@GetMapping("api/publishing-houses")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
 	GetPublishingHousesResponse getPublishingHouses();
 
-	GetPublishingHouseResponse getPublishingHouse(UUID id);
+	@GetMapping("api/publishing-houses/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	GetPublishingHouseResponse getPublishingHouse(
+			@PathVariable("id")
+			UUID id
+	);
 
-	void putPublishingHouse(UUID id, PutPublishingHouseRequest request);
+	@PutMapping("api/publishing-houses/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	void putPublishingHouse(
+			@PathVariable("id")
+			UUID id,
+			@RequestBody
+			PutPublishingHouseRequest request
+	);
 
-	void patchPublishingHouse(UUID id, PatchPublishingHouseRequest request);
+	@PatchMapping("/api/publishing-houses/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	void patchPublishingHouse(
+			@PathVariable("id")
+			UUID id,
+			@RequestBody
+			PatchPublishingHouseRequest request
+	);
 
-	void deletePublishingHouse(UUID id);
+
+	@GetMapping("api/publishing-houses/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	void deletePublishingHouse(
+			@PathVariable("id")
+			UUID id
+	);
 }
