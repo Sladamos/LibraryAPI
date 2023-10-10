@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.util.function.BiFunction;
 
 public class PutRequestToBookFunction implements BiFunction<UUID, PutBookRequest, Book> {
+
 	@Override
 	public Book apply(UUID id, PutBookRequest putBookRequest) {
 		return Book.builder()

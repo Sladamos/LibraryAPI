@@ -3,8 +3,6 @@ package pg.eti.book.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
 public class PatchBookRequest {
@@ -16,7 +14,5 @@ public class PatchBookRequest {
 	private String isbn;
 
 	private Integer numberOfPages;
-
-	private List<String> genres;
 
 }
