@@ -1,10 +1,12 @@
 package pg.eti.book.function;
 
+import org.springframework.stereotype.Component;
 import pg.eti.book.dto.PatchBookRequest;
 import pg.eti.book.entity.Book;
 
 import java.util.function.BiFunction;
 
+@Component
 public class UpdateBookWithRequestFunction implements BiFunction<Book, PatchBookRequest, Book> {
 
 	@Override

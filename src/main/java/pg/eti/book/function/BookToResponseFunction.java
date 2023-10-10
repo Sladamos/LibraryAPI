@@ -1,10 +1,12 @@
 package pg.eti.book.function;
 
+import org.springframework.stereotype.Component;
 import pg.eti.book.dto.GetBookResponse;
 import pg.eti.book.entity.Book;
 
 import java.util.function.Function;
 
+@Component
 public class BookToResponseFunction implements Function<Book, GetBookResponse> {
 
 	@Override

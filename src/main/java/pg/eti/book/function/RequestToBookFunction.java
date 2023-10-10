@@ -1,5 +1,6 @@
 package pg.eti.book.function;
 
+import org.springframework.stereotype.Component;
 import pg.eti.book.dto.PutBookRequest;
 import pg.eti.book.entity.Book;
 import pg.eti.book.entity.PublishingHouse;
@@ -7,6 +8,7 @@ import pg.eti.book.entity.PublishingHouse;
 import java.util.UUID;
 import java.util.function.BiFunction;
 
+@Component
 public class RequestToBookFunction implements BiFunction<UUID, PutBookRequest, Book> {
 
 	@Override
