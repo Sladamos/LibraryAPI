@@ -15,6 +15,7 @@ import pg.eti.book.function.BooksToResponseFunction;
 import pg.eti.book.function.RequestToBookFunction;
 import pg.eti.book.function.UpdateBookWithRequestFunction;
 import pg.eti.book.service.api.BookService;
+import pg.eti.book.service.exception.BookServiceException;
 
 import java.util.UUID;
 
@@ -67,7 +68,11 @@ public class BookDefaultController implements BookController {
 	@Override
 	public void putBook(UUID id, PutBookRequest request) {
 		//TODO; what if incorrect publishing house - check if exist -> do similiart thing with patch
-		service.create(requestToBook.apply(id, request));
+		try {
+			service.create(requestToBook.apply(id, request));
+		} catch (BookServiceException exception) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+		}
 	}
 
 	@Override

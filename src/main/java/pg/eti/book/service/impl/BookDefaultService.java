@@ -3,9 +3,11 @@ package pg.eti.book.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pg.eti.book.entity.Book;
+import pg.eti.book.entity.PublishingHouse;
 import pg.eti.book.repository.api.BookRepository;
 import pg.eti.book.repository.api.PublishingHouseRepository;
 import pg.eti.book.service.api.BookService;
+import pg.eti.book.service.exception.BookServiceException;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +50,23 @@ public class BookDefaultService implements BookService {
 
     @Override
     public void create(Book book) {
+        if (book.getIsbn() == null) {
+            throw new BookServiceException("ISBN is not specified");
+        }
+        if (book.getPublishingHouse().getId() == null) {
+            throw new BookServiceException("Publishing house is not specified");
+        }
+
+        Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(book.getPublishingHouse().getId());
+        if (publishingHouse.isEmpty()) {
+            throw new BookServiceException("Publishing house doesn't exist");
+        }
+        Optional<Book> bookWithSameIsbn = repository.findByIsbn(book.getIsbn());
+
+        if (bookWithSameIsbn.isPresent() && !bookWithSameIsbn.get().getId().equals(book.getId())) {
+            throw new BookServiceException("ISBN is already used");
+        }
+
         repository.save(book);
     }
 

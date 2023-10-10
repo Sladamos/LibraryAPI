@@ -30,3 +30,75 @@ GET http://localhost:8080/api/books?publishing-house=Insignis
 
 GET http://localhost:8080/api/books?publishing-house=ansignia
 
+### Create new publishing house
+
+### Create new publishing house with existing name
+
+### Create new publishing house with existing id
+
+### Create new book
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book with incorrect unique field of other book (isbn)
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788367323000",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book with unexisting publishing house
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "555da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book without unnecessary field
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "genres": ["Drama"]
+}
+### Create new book without necessary field
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797930",
+    "genres": ["Drama"]
+}
