@@ -14,14 +14,9 @@ public interface BookController {
 	@GetMapping("api/books")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	GetBooksResponse getBooks();
-
-	@GetMapping("/api/publishing-houses/{publishingHouseId}/books")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	GetBooksResponse getPublishingHouseBooks(
-			@PathVariable("publishingHouseId")
-			UUID publishingHouseId
+	GetBooksResponse getBooks(
+			@RequestParam(required = false, name = "publishing-house")
+			String publishingHouseName
 	);
 
 

@@ -47,15 +47,14 @@ public class BookDefaultController implements BookController {
 	}
 
 	@Override
-	public GetBooksResponse getBooks() {
-		return booksToResponse.apply(service.findAll());
-	}
-
-	@Override
-	public GetBooksResponse getPublishingHouseBooks(UUID publishingHouseId) {
-		return service.findAllByPublishingHouse(publishingHouseId)
-				.map(booksToResponse)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	public GetBooksResponse getBooks(String publishingHouseName) {
+		if(publishingHouseName != null) {
+			return service.findAllByPublishingHouse(publishingHouseName)
+					.map(booksToResponse)
+					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		} else {
+			return booksToResponse.apply(service.findAll());
+		}
 	}
 
 	@Override

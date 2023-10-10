@@ -41,6 +41,12 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
+    public Optional<List<Book>> findAllByPublishingHouse(String publishingHouseName) {
+        return publishingHouseRepository.findByName(publishingHouseName)
+                .map(repository::findAllByPublishingHouse);
+    }
+
+    @Override
     public void create(Book book) {
         repository.save(book);
     }

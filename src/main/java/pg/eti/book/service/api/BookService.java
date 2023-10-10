@@ -12,6 +12,8 @@ public interface BookService {
 
     Optional<List<Book>> findAllByPublishingHouse(UUID publishingHouseId);
 
+    Optional<List<Book>> findAllByPublishingHouse(String publishingHouseName);
+
     Optional<Book> find(UUID id);
 
     void create(Book book);

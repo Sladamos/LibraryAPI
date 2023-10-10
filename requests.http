@@ -24,9 +24,9 @@ GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b9
 
 ### Get publishing house's books
 
-GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/books
+GET http://localhost:8080/api/books?publishing-house=Insignis
 
 ### Get publishing house's books, publishing house not existing
 
-GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90eee/books
+GET http://localhost:8080/api/books?publishing-house=ansignia
 
