@@ -3,19 +3,20 @@ package pg.eti.book.function;
 import pg.eti.book.dto.PatchBookRequest;
 import pg.eti.book.entity.Book;
 
-import java.util.UUID;
 import java.util.function.BiFunction;
 
-public class UpdateBookWithRequestFunction implements BiFunction<UUID, PatchBookRequest, Book> {
+public class UpdateBookWithRequestFunction implements BiFunction<Book, PatchBookRequest, Book> {
 
 	@Override
-	public Book apply(UUID id, PatchBookRequest patchBookRequest) {
+	public Book apply(Book entity, PatchBookRequest patchBookRequest) {
 		return Book.builder()
-				.id(id)
+				.id(entity.getId())
 				.title(patchBookRequest.getTitle())
 				.author(patchBookRequest.getAuthor())
 				.isbn(patchBookRequest.getIsbn())
 				.numberOfPages(patchBookRequest.getNumberOfPages())
+				.genres(entity.getGenres())
+				.publishingHouse(entity.getPublishingHouse())
 				.build();
 	}
 }
