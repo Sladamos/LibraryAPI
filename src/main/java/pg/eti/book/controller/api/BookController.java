@@ -16,6 +16,15 @@ public interface BookController {
 	@ResponseBody
 	GetBooksResponse getBooks();
 
+	@GetMapping("/api/publishing-houses/{publishingHouseId}/books")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	GetBooksResponse getPublishingHouseBooks(
+			@PathVariable("publishingHouseId")
+			UUID publishingHouseId
+	);
+
+
 	@GetMapping("api/books/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody

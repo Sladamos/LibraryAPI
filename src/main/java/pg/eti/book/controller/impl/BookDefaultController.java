@@ -52,6 +52,13 @@ public class BookDefaultController implements BookController {
 	}
 
 	@Override
+	public GetBooksResponse getPublishingHouseBooks(UUID publishingHouseId) {
+		return service.findAllByPublishingHouse(publishingHouseId)
+				.map(booksToResponse)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
+	@Override
 	public GetBookResponse getBook(UUID id) {
 		return service.find(id)
 				.map(bookToResponse)
