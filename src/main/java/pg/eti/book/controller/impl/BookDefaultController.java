@@ -50,7 +50,7 @@ public class BookDefaultController implements BookController {
 
 	@Override
 	public void putBook(UUID id, PutBookRequest request) {
-		//service.create();
+		
 	}
 
 	@Override

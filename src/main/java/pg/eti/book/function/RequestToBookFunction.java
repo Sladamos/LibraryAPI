@@ -7,7 +7,7 @@ import pg.eti.book.entity.PublishingHouse;
 import java.util.UUID;
 import java.util.function.BiFunction;
 
-public class PutRequestToBookFunction implements BiFunction<UUID, PutBookRequest, Book> {
+public class RequestToBookFunction implements BiFunction<UUID, PutBookRequest, Book> {
 
 	@Override
 	public Book apply(UUID id, PutBookRequest putBookRequest) {
