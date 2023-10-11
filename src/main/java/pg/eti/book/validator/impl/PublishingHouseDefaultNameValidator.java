@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 @Component
 public class PublishingHouseDefaultNameValidator implements PublishingHouseNameValidator {
 
-	private final String publishingHouseNameRegex = "[A-Z][a-zA-Z ]+";
+	private final String publishingHouseNameRegex = "\\p{IsAlphabetic}[\\p{IsAlphabetic}\s]+";
 
 	@Override
 	public void validateName(String publishingHouseName) throws ValidatorException {
