@@ -24,7 +24,8 @@ public class IsbnDefaultValidator implements IsbnValidator {
 
 		Pattern pattern = Pattern.compile(isbnRegex);
 		boolean doesContainsDigitsOnly = pattern.matcher(isbn).matches();
-		if (!doesContainsDigitsOnly)
+		if (!doesContainsDigitsOnly) {
 			throw new ValidatorException("ISBN must have digits only");
+		}
 	}
 }
