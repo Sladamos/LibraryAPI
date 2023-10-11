@@ -78,7 +78,13 @@ public class BookDefaultController implements BookController {
 	public void patchBook(UUID id, PatchBookRequest request) {
 		service.find(id)
 				.ifPresentOrElse(
-						book -> service.update(updateBookWithRequest.apply(book, request)),
+						book -> {
+							try {
+								service.update(updateBookWithRequest.apply(book, request));
+							} catch (BookServiceException error) {
+								throw new ResponseStatusException(HttpStatus.BAD_REQUEST, error.getMessage());
+							}
+						},
 						() -> {
 							throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 						}

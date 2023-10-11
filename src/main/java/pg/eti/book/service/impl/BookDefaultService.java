@@ -59,6 +59,7 @@ public class BookDefaultService implements BookService {
 
     @Override
     public void update(Book book) {
+        checkIfIsbnIsNotBeingReservedByOtherBook(book.getIsbn(), book.getId());
         repository.save(book);
     }
 

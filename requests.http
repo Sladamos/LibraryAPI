@@ -188,7 +188,7 @@ content-type: application/json
 
 ### Patch existing book with incorrect field
 
-PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+PATCH http://localhost:8080/api/books/cc0b0577-bb6f-45b7-81d6-3db88e6ac19f
 content-type: application/json
 
 {
