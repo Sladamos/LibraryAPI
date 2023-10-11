@@ -14,18 +14,17 @@ public class IsbnDefaultValidator implements IsbnValidator {
 
 	@Override
 	public void validateIsbn(String isbn) throws ValidatorException {
-		if(isbn.isEmpty()) {
+		if (isbn.isEmpty()) {
 			throw new ValidatorException("ISBN can't be empty");
 		}
 
-		if(isbn.length() != isbnLength) {
+		if (isbn.length() != isbnLength) {
 			throw new ValidatorException("ISBN length is specified to 13");
 		}
 
 		Pattern pattern = Pattern.compile(isbnRegex);
 		boolean doesContainsDigitsOnly = pattern.matcher(isbn).matches();
-		if(!doesContainsDigitsOnly)
+		if (!doesContainsDigitsOnly)
 			throw new ValidatorException("ISBN must have digits only");
-		}
 	}
 }
