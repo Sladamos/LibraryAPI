@@ -33,7 +33,7 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 			PublishingHousesToResponseFunction publishingHousesToResponse,
 			PublishingHouseToResponseFunction publishingHouseToResponse,
 			RequestToPublishingHouseFunction requestToPublishingHouse,
-			PUpdatePublishingHouseWithRequestFunction updatePublishingHouseWithRequest) {
+			UpdatePublishingHouseWithRequestFunction updatePublishingHouseWithRequest) {
 		this.service = service;
 		this.publishingHousesToResponse = publishingHousesToResponse;
 		this.publishingHouseToResponse = publishingHouseToResponse;
