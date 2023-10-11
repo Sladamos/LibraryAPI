@@ -8,6 +8,8 @@ import pg.eti.book.repository.api.BookRepository;
 import pg.eti.book.repository.api.PublishingHouseRepository;
 import pg.eti.book.service.api.BookService;
 import pg.eti.book.service.exception.BookServiceException;
+import pg.eti.book.validator.api.IsbnValidator;
+import pg.eti.book.validator.exception.ValidatorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +22,16 @@ public class BookDefaultService implements BookService {
 
     private final PublishingHouseRepository publishingHouseRepository;
 
+    private final IsbnValidator isbnValidator;
+
     @Autowired
-    public BookDefaultService(BookRepository repository, PublishingHouseRepository publishingHouseRepository) {
+    public BookDefaultService(
+            BookRepository repository,
+            PublishingHouseRepository publishingHouseRepository,
+            IsbnValidator isbnValidator) {
         this.repository = repository;
         this.publishingHouseRepository = publishingHouseRepository;
+        this.isbnValidator = isbnValidator;
     }
 
     @Override
@@ -54,12 +62,22 @@ public class BookDefaultService implements BookService {
         checkIfPublishingHouseIdIsSpecified(book.getPublishingHouse().getId());
         checkIfPublishingHouseExists(book.getPublishingHouse().getId());
         checkIfIsbnIsNotBeingReservedByOtherBook(book.getIsbn(), book.getId());
+        try {
+            isbnValidator.validateIsbn(book.getIsbn());
+        } catch (ValidatorException e) {
+            throw new BookServiceException(e.getMessage());
+        }
         repository.save(book);
     }
 
     @Override
     public void update(Book book) throws BookServiceException {
         checkIfIsbnIsNotBeingReservedByOtherBook(book.getIsbn(), book.getId());
+        try {
+            isbnValidator.validateIsbn(book.getIsbn());
+        } catch (ValidatorException e) {
+            throw new BookServiceException(e.getMessage());
+        }
         repository.save(book);
     }
 

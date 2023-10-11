@@ -1,10 +1,12 @@
 package pg.eti.book.validator.impl;
 
+import org.springframework.stereotype.Component;
 import pg.eti.book.validator.api.IsbnValidator;
 import pg.eti.book.validator.exception.ValidatorException;
 
 import java.util.regex.Pattern;
 
+@Component
 public class IsbnDefaultValidator implements IsbnValidator {
 
 	private final int isbnLength = 13;
