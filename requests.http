@@ -200,7 +200,7 @@ content-type: application/json
 
 ### Patch existing publishing house with all fields
 
-PATCH http://localhost:8080/api/publishing-houses/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {
@@ -210,7 +210,7 @@ content-type: application/json
 
 ### Patch existing publishing house without all fields
 
-PATCH http://localhost:8080/api/publishing-houses/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {
@@ -229,7 +229,7 @@ content-type: application/json
 
 ### Patch publishing house with incorrect field
 
-PATCH http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {
