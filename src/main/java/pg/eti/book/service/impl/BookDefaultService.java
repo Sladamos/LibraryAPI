@@ -49,7 +49,7 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
-    public void create(Book book) {
+    public void create(Book book) throws BookServiceException {
         checkIfIsbnIsSpecified(book.getIsbn());
         checkIfPublishingHouseIdIsSpecified(book.getPublishingHouse().getId());
         checkIfPublishingHouseExists(book.getPublishingHouse().getId());
@@ -58,7 +58,7 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
-    public void update(Book book) {
+    public void update(Book book) throws BookServiceException {
         checkIfIsbnIsNotBeingReservedByOtherBook(book.getIsbn(), book.getId());
         repository.save(book);
     }
@@ -73,19 +73,19 @@ public class BookDefaultService implements BookService {
         repository.deleteAll();
     }
 
-    private void checkIfPublishingHouseIdIsSpecified(UUID id) {
+    private void checkIfPublishingHouseIdIsSpecified(UUID id) throws BookServiceException {
         if (id == null) {
             throw new BookServiceException("Publishing house is not specified");
         }
     }
 
-    private void checkIfIsbnIsSpecified(String isbn) {
+    private void checkIfIsbnIsSpecified(String isbn) throws BookServiceException {
         if (isbn == null) {
             throw new BookServiceException("ISBN is not specified");
         }
     }
 
-    private void checkIfIsbnIsNotBeingReservedByOtherBook(String isbn, UUID id) {
+    private void checkIfIsbnIsNotBeingReservedByOtherBook(String isbn, UUID id) throws BookServiceException {
         Optional<Book> bookWithSameIsbn = repository.findByIsbn(isbn);
 
         if (bookWithSameIsbn.isPresent() && !bookWithSameIsbn.get().getId().equals(id)) {
@@ -93,7 +93,7 @@ public class BookDefaultService implements BookService {
         }
     }
 
-    private void checkIfPublishingHouseExists(UUID id) {
+    private void checkIfPublishingHouseExists(UUID id) throws BookServiceException {
         Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(id);
         if (publishingHouse.isEmpty()) {
             throw new BookServiceException("Publishing house doesn't exist");

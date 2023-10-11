@@ -1,6 +1,7 @@
 package pg.eti.book.service.api;
 
 import pg.eti.book.entity.Book;
+import pg.eti.book.service.exception.BookServiceException;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +17,9 @@ public interface BookService {
 
     Optional<Book> find(UUID id);
 
-    void create(Book book);
+    void create(Book book) throws BookServiceException;
 
-    void update(Book book);
+    void update(Book book) throws BookServiceException;
 
     void delete(UUID id);
 
