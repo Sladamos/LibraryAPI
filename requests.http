@@ -50,6 +50,27 @@ content-type: application/json
     "creationYear": 2050
 }
 
+### Create new publishing house without name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "creationYear": 2050
+}
+
+### Create new publishing house with incorrect name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "",
+    "creationYear": 2050
+}
+
+
+
 ### Create new book
 
 PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
@@ -128,8 +149,59 @@ DELETE http://localhost:8080/api/books/ff327e8a-77c0-4f9b-90a2-89e16895deee
 
 ### Delete existing publishing house
 
-DELETE http://localhost:8080/api/localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+DELETE http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 
 ### Delete unexisting publishing house
 
 DELETE http://localhost:8080/api/localhost:8080/api/publishing-houses/555da2ae-6a14-4b6d-8b4f-d117867118d4
+
+### Patch existing book with all fields
+PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797444"
+}
+
+### Patch existing book without all fields
+PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian"
+}
+
+### Patch unexisting book
+PATCH http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797930"
+}
+
+### Patch existing book with incorrect field
+
+PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788367323000"
+}
+
+### Patch existing publishing house with all fields
+
+### Patch existing publishing house without all fields
+
+### Patch unexisting publishing house
+
+### Patch publishing house with incorrect field

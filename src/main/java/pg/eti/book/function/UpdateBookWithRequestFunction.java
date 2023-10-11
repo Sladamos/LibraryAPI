@@ -13,10 +13,11 @@ public class UpdateBookWithRequestFunction implements BiFunction<Book, PatchBook
 	public Book apply(Book entity, PatchBookRequest patchBookRequest) {
 		return Book.builder()
 				.id(entity.getId())
-				.title(patchBookRequest.getTitle())
-				.author(patchBookRequest.getAuthor())
-				.isbn(patchBookRequest.getIsbn())
-				.numberOfPages(patchBookRequest.getNumberOfPages())
+				.title(patchBookRequest.getTitle() == null ? entity.getTitle() : patchBookRequest.getTitle())
+				.author(patchBookRequest.getAuthor() == null ? entity.getAuthor() : patchBookRequest.getAuthor())
+				.isbn(patchBookRequest.getIsbn() == null ? entity.getIsbn() : patchBookRequest.getIsbn())
+				.numberOfPages(patchBookRequest.getNumberOfPages() == null ?
+						entity.getNumberOfPages() : patchBookRequest.getNumberOfPages())
 				.genres(entity.getGenres())
 				.publishingHouse(entity.getPublishingHouse())
 				.build();
