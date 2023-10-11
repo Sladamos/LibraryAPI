@@ -67,6 +67,11 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 
 	@Override
 	public void deletePublishingHouse(UUID id) {
-
+		service.find(id)
+				.ifPresentOrElse(
+						publishingHouse -> service.delete(id),
+						() -> {
+							throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+						});
 	}
 }
