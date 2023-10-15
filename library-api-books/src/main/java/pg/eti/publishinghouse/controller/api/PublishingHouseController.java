@@ -2,8 +2,8 @@ package pg.eti.publishinghouse.controller.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pg.eti.book.dto.PatchPublishingHouseRequest;
-import pg.eti.book.dto.PutPublishingHouseRequest;
+import pg.eti.publishinghouse.dto.PatchPublishingHouseRequest;
+import pg.eti.publishinghouse.dto.PutPublishingHouseRequest;
 
 import java.util.UUID;
 

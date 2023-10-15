@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import pg.eti.book.dto.PatchPublishingHouseRequest;
-import pg.eti.book.dto.PutPublishingHouseRequest;
-import pg.eti.book.function.RequestToPublishingHouseFunction;
-import pg.eti.book.function.UpdatePublishingHouseWithRequestFunction;
-import pg.eti.book.service.api.PublishingHouseService;
-import pg.eti.book.service.exception.PublishingHouseServiceException;
+import pg.eti.publishinghouse.dto.PatchPublishingHouseRequest;
+import pg.eti.publishinghouse.dto.PutPublishingHouseRequest;
+import pg.eti.publishinghouse.function.RequestToPublishingHouseFunction;
+import pg.eti.publishinghouse.function.UpdatePublishingHouseWithRequestFunction;
 import pg.eti.publishinghouse.controller.api.PublishingHouseController;
+import pg.eti.publishinghouse.service.api.PublishingHouseService;
+import pg.eti.publishinghouse.service.exception.PublishingHouseServiceException;
 
 import java.util.UUID;
 
