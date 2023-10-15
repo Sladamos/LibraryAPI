@@ -1,0 +1,238 @@
+### Get all books
+
+GET http://localhost:8080/api/books
+
+### Get single book
+
+GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+
+### Get single book, not existing
+
+GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12eeee
+
+### Get publishing houses
+
+GET http://localhost:8080/api/publishing-houses
+
+### Get single publishing house
+
+GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+
+### Get single publishing house, not existing
+
+GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90eee
+
+### Get publishing house's books
+
+GET http://localhost:8080/api/books?publishing-house=Insignis
+
+### Get publishing house's books, publishing house not existing
+
+GET http://localhost:8080/api/books?publishing-house=ansignia
+
+### Create new publishing house
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "Greg",
+    "creationYear": 1993
+}
+
+### Create new publishing house with existing name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "Insignis",
+    "creationYear": 2050
+}
+
+### Create new publishing house without name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "creationYear": 2050
+}
+
+### Create new publishing house with incorrect name
+
+PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "",
+    "creationYear": 2050
+}
+
+
+
+### Create new book
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book with incorrect unique field of other book (isbn)
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788367323000",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book with unexisting publishing house
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "555da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "numberOfPages": 120,
+    "genres": ["Drama"]
+}
+
+### Create new book without unnecessary field
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "publishingHouse": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4",
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "isbn": "9788382797930",
+    "genres": ["Drama"]
+}
+
+### Create new book without necessary field
+
+PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797930",
+    "genres": ["Drama"]
+}
+
+### Delete existing book
+
+DELETE http://localhost:8080/api/books/ff327e8a-77c0-4f9b-90a2-89e16895d1e1
+
+### Delete unexisting book
+
+DELETE http://localhost:8080/api/books/ff327e8a-77c0-4f9b-90a2-89e16895deee
+
+### Delete existing publishing house
+
+DELETE http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+
+### Delete unexisting publishing house
+
+DELETE http://localhost:8080/api/localhost:8080/api/publishing-houses/555da2ae-6a14-4b6d-8b4f-d117867118d4
+
+### Patch existing book with all fields
+PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797444"
+}
+
+### Patch existing book without all fields
+PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian"
+}
+
+### Patch unexisting book
+PATCH http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788382797930"
+}
+
+### Patch existing book with incorrect field
+
+PATCH http://localhost:8080/api/books/cc0b0577-bb6f-45b7-81d6-3db88e6ac19f
+content-type: application/json
+
+{
+    "author": "Juliusz Słowacki",
+    "title": "Kordian",
+    "numberOfPages": 120,
+    "isbn": "9788367323000"
+}
+
+### Patch existing publishing house with all fields
+
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+content-type: application/json
+
+{
+    "name": "Diablis",
+    "creationYear": 1014
+}
+
+### Patch existing publishing house without all fields
+
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+content-type: application/json
+
+{
+    "name": "Diablis"
+}
+
+### Patch unexisting publishing house
+
+PATCH http://localhost:8080/api/publishing-houses/aaad3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+content-type: application/json
+
+{
+    "name": "Poliss",
+    "creationYear": 2050
+}
+
+### Patch publishing house with incorrect field
+
+PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+content-type: application/json
+
+{
+    "name": "Insignis",
+    "creationYear": 2050
+}
