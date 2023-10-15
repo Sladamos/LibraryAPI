@@ -106,6 +106,7 @@ content-type: application/json
 }
 
 ### Patch existing book without all fields
+
 PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 content-type: application/json
 
@@ -115,6 +116,7 @@ content-type: application/json
 }
 
 ### Patch unexisting book
+
 PATCH http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
