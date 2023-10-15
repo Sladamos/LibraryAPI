@@ -1,15 +1,17 @@
-package pg.eti.book.controller.impl;
+package pg.eti.publishinghouse.controller.impl;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import pg.eti.book.controller.api.PublishingHouseController;
-import pg.eti.book.dto.*;
-import pg.eti.book.function.*;
+import pg.eti.book.dto.PatchPublishingHouseRequest;
+import pg.eti.book.dto.PutPublishingHouseRequest;
+import pg.eti.book.function.RequestToPublishingHouseFunction;
+import pg.eti.book.function.UpdatePublishingHouseWithRequestFunction;
 import pg.eti.book.service.api.PublishingHouseService;
 import pg.eti.book.service.exception.PublishingHouseServiceException;
+import pg.eti.publishinghouse.controller.api.PublishingHouseController;
 
 import java.util.UUID;
 
@@ -19,38 +21,18 @@ public class PublishingHouseDefaultController implements PublishingHouseControll
 
 	private final PublishingHouseService service;
 
-	private final PublishingHousesToResponseFunction publishingHousesToResponse;
-
-	private final PublishingHouseToResponseFunction publishingHouseToResponse;
-
 	private final RequestToPublishingHouseFunction requestToPublishingHouse;
 
-	private UpdatePublishingHouseWithRequestFunction updatePublishingHouseWithRequest;
+	private final UpdatePublishingHouseWithRequestFunction updatePublishingHouseWithRequest;
 
 	@Autowired
 	public PublishingHouseDefaultController(
 			PublishingHouseService service,
-			PublishingHousesToResponseFunction publishingHousesToResponse,
-			PublishingHouseToResponseFunction publishingHouseToResponse,
 			RequestToPublishingHouseFunction requestToPublishingHouse,
 			UpdatePublishingHouseWithRequestFunction updatePublishingHouseWithRequest) {
 		this.service = service;
-		this.publishingHousesToResponse = publishingHousesToResponse;
-		this.publishingHouseToResponse = publishingHouseToResponse;
 		this.requestToPublishingHouse = requestToPublishingHouse;
 		this.updatePublishingHouseWithRequest = updatePublishingHouseWithRequest;
-	}
-
-	@Override
-	public GetPublishingHousesResponse getPublishingHouses() {
-		return publishingHousesToResponse.apply(service.findAll());
-	}
-
-	@Override
-	public GetPublishingHouseResponse getPublishingHouse(UUID id) {
-		return service.find(id)
-				.map(publishingHouseToResponse)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
 	@Override
