@@ -3,6 +3,7 @@ package pg.eti.publishinghouse.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pg.eti.publishinghouse.entity.PublishingHouse;
+import pg.eti.publishinghouse.event.repository.api.PublishingHouseEventRepository;
 import pg.eti.publishinghouse.repository.api.PublishingHouseRepository;
 import pg.eti.publishinghouse.service.api.PublishingHouseService;
 import pg.eti.publishinghouse.service.exception.PublishingHouseServiceException;
@@ -18,13 +19,17 @@ public class PublishingHouseDefaultService implements PublishingHouseService {
 
     private final PublishingHouseRepository repository;
 
+    private final PublishingHouseEventRepository eventRepository;
+
     private final PublishingHouseNameValidator nameValidator;
 
     @Autowired
     public PublishingHouseDefaultService(
             PublishingHouseRepository repository,
+            PublishingHouseEventRepository eventRepository,
             PublishingHouseNameValidator nameValidator) {
         this.repository = repository;
+        this.eventRepository = eventRepository;
         this.nameValidator = nameValidator;
     }
 
@@ -48,6 +53,7 @@ public class PublishingHouseDefaultService implements PublishingHouseService {
             throw new PublishingHouseServiceException(e.getMessage());
         }
         repository.save(publishingHouse);
+        eventRepository.create(publishingHouse);
     }
 
     @Override
@@ -59,16 +65,13 @@ public class PublishingHouseDefaultService implements PublishingHouseService {
             throw new PublishingHouseServiceException(e.getMessage());
         }
         repository.save(publishingHouse);
+        eventRepository.update(publishingHouse);
     }
 
     @Override
     public void delete(UUID publishingHouse) {
         repository.findById(publishingHouse).ifPresent(repository::delete);
-    }
-
-    @Override
-    public void deleteAll() {
-        repository.deleteAll();
+        eventRepository.delete(publishingHouse);
     }
 
     private void checkIfNameIsSpecified(String name) throws PublishingHouseServiceException {

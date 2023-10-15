@@ -18,6 +18,4 @@ public interface PublishingHouseService {
     void update(PublishingHouse publishingHouse) throws PublishingHouseServiceException;
 
     void delete(UUID publishingHouse);
-
-    void deleteAll();
 }
