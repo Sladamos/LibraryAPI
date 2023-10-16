@@ -1,18 +1,18 @@
 ### Get publishing houses
 
-GET http://localhost:8080/api/publishing-houses
+GET http://localhost:8082/api/publishing-houses
 
 ### Get single publishing house
 
-GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+GET http://localhost:8082/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 
 ### Get single publishing house, not existing
 
-GET http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90eee
+GET http://localhost:8082/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90eee
 
 ### Create new publishing house
 
-PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8082/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -22,7 +22,7 @@ content-type: application/json
 
 ### Create new publishing house with existing name
 
-PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8082/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -32,7 +32,7 @@ content-type: application/json
 
 ### Create new publishing house without name
 
-PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8082/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -41,7 +41,7 @@ content-type: application/json
 
 ### Create new publishing house with incorrect name
 
-PUT http://localhost:8080/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8082/api/publishing-houses/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -51,15 +51,15 @@ content-type: application/json
 
 ### Delete existing publishing house
 
-DELETE http://localhost:8080/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+DELETE http://localhost:8082/api/publishing-houses/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 
 ### Delete unexisting publishing house
 
-DELETE http://localhost:8080/api/localhost:8080/api/publishing-houses/555da2ae-6a14-4b6d-8b4f-d117867118d4
+DELETE http://localhost:8082/api/localhost:8082/api/publishing-houses/555da2ae-6a14-4b6d-8b4f-d117867118d4
 
 ### Patch existing publishing house with all fields
 
-PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+PATCH http://localhost:8082/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {
@@ -69,7 +69,7 @@ content-type: application/json
 
 ### Patch existing publishing house without all fields
 
-PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+PATCH http://localhost:8082/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {
@@ -78,7 +78,7 @@ content-type: application/json
 
 ### Patch unexisting publishing house
 
-PATCH http://localhost:8080/api/publishing-houses/aaad3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PATCH http://localhost:8082/api/publishing-houses/aaad3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -88,7 +88,7 @@ content-type: application/json
 
 ### Patch publishing house with incorrect field
 
-PATCH http://localhost:8080/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+PATCH http://localhost:8082/api/publishing-houses/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 content-type: application/json
 
 {

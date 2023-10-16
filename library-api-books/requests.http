@@ -1,26 +1,26 @@
 ### Get all books
 
-GET http://localhost:8080/api/books
+GET http://localhost:8081/api/books
 
 ### Get single book
 
-GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+GET http://localhost:8081/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 
 ### Get single book, not existing
 
-GET http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12eeee
+GET http://localhost:8081/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12eeee
 
 ### Get publishing house's books
 
-GET http://localhost:8080/api/books?publishing-house=Insignis
+GET http://localhost:8081/api/books?publishing-house=Insignis
 
 ### Get publishing house's books, publishing house not existing
 
-GET http://localhost:8080/api/books?publishing-house=ansignia
+GET http://localhost:8081/api/books?publishing-house=ansignia
 
 ### Create new book
 
-PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -34,7 +34,7 @@ content-type: application/json
 
 ### Create new book with incorrect unique field of other book (isbn)
 
-PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -48,7 +48,7 @@ content-type: application/json
 
 ### Create new book with unexisting publishing house
 
-PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -62,7 +62,7 @@ content-type: application/json
 
 ### Create new book without unnecessary field
 
-PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -75,7 +75,7 @@ content-type: application/json
 
 ### Create new book without necessary field
 
-PUT http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PUT http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -88,14 +88,14 @@ content-type: application/json
 
 ### Delete existing book
 
-DELETE http://localhost:8080/api/books/ff327e8a-77c0-4f9b-90a2-89e16895d1e1
+DELETE http://localhost:8081/api/books/ff327e8a-77c0-4f9b-90a2-89e16895d1e1
 
 ### Delete unexisting book
 
-DELETE http://localhost:8080/api/books/ff327e8a-77c0-4f9b-90a2-89e16895deee
+DELETE http://localhost:8081/api/books/ff327e8a-77c0-4f9b-90a2-89e16895deee
 
 ### Patch existing book with all fields
-PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+PATCH http://localhost:8081/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 content-type: application/json
 
 {
@@ -107,7 +107,7 @@ content-type: application/json
 
 ### Patch existing book without all fields
 
-PATCH http://localhost:8080/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+PATCH http://localhost:8081/api/books/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 content-type: application/json
 
 {
@@ -117,7 +117,7 @@ content-type: application/json
 
 ### Patch unexisting book
 
-PATCH http://localhost:8080/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
+PATCH http://localhost:8081/api/books/555d3e7b-bb1f-4c13-bf17-926d1a12e4c0 
 content-type: application/json
 
 {
@@ -129,7 +129,7 @@ content-type: application/json
 
 ### Patch existing book with incorrect field
 
-PATCH http://localhost:8080/api/books/cc0b0577-bb6f-45b7-81d6-3db88e6ac19f
+PATCH http://localhost:8081/api/books/cc0b0577-bb6f-45b7-81d6-3db88e6ac19f
 content-type: application/json
 
 {
