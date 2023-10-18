@@ -49,15 +49,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-for="publishing-house : {publishing-house.publishing-house}">
-                            <td data-text="{publishing-house.name}"></td>
+                        <tr data-for="publishingHouse : {publishingHouses.publishingHouses}">
+                            <td data-text="{publishingHouse.name}"></td>
                             <td>
                                 <a href="#"
-                                    data-href="../publishing-house-view/publishing-house-view.html?id={publishing-house.id}">View</a>
+                                    data-href="../publishing-house-view/publishing-house-view.html?id={publishingHouse.id}">View</a>
                             </td>
                             <td>
                                 <a href="#"
-                                    data-href="../publishing-house-edit/publishing-house-edit.html?id={publishing-house.id}">Edit</a>
+                                    data-href="../publishing-house-edit/publishing-house-edit.html?id={publishingHouse.id}">Edit</a>
                             </td>
                             <td>
                                 <button class="btn" data-click="{onDelete(publishing-house)}">Delete</button>
