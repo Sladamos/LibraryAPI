@@ -1,0 +1,11 @@
+{
+  "name": "pg.eti",
+  "version": "1.0.0",
+  "description": "Angular app for library api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Slawomir Adamowicz",
+  "license": "ISC"
+}
