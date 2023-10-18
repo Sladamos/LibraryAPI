@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Simple RPG web application" />
+    <meta name="keywords" content="RPG" />
+    <meta name="author" content="Michał (psysiu) Wójcik" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple RPG</title>
+    <script type="module" src="./publishing-house-list.js" defer="defer"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="mb-4 mt-4">
+            <h1>Simple RPG</h1>
+        </header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../../user/component/user-list/user-list.html">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./character-list.html">Characters</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="mb-4 mt-4">
+            <article class="text--justified">
+                <header>
+                    <h2>Characters</h2>
+                </header>
+
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Portrait</th>
+                            <th>Name</th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-for="character : {characters.characters}">
+                            <td>
+                                <img class="portrait rounded-circle" alt="Character portrait" src="#"
+                                    data-src="/api/characters/{character.id}/portrait" />
+                            </td>
+                            <td data-text="{character.name}"></td>
+                            <td>
+                                <a href="#" data-href="../character-view/character-view.html?id={character.id}">View</a>
+                            </td>
+                            <td>
+                                <a href="#" data-href="../character-edit/character-edit.html?id={character.id}">Edit</a>
+                            </td>
+                            <td>
+                                <button class="btn" data-click="{onDelete(character)}">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </main>
+
+        <footer class="text-center text-lg-start bg-light text-muted p-2">
+            <div class="text-center">
+                Copyright &#169; 2020-2023, Michał (psysiu) Wójcik
+            </div>
+            <div class="text-center">
+                All character's portraits were created using
+                <a href="http://dmheroes.com">DMHeroes</a> developed by
+                <a href="https://twitter.com/ChristianOesch">Christian Oesch</a>.
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
