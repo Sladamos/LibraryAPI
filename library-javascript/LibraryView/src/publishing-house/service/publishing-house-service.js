@@ -1,5 +1,3 @@
-import "../type/types.js";
-
 export class PublishingHouseService {
   getPublishingHouses() {
     return fetch("/api/publishing-houses").then((response) => {
