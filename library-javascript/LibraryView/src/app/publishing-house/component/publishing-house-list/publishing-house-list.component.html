@@ -1,4 +1,12 @@
-<p>publishing-house-list works!</p>
-<div *ngFor="let publishingHouse of publishingHouses">
-    <p>{{publishingHouse.name}} with ID: {{publishingHouse.id}}</p>
+<div class="library">
+    <header class="library-header">
+        Publishing houses in library
+    </header>
+    <div class="library-content">
+        <div class="house-container" *ngFor="let publishingHouse of publishingHouses">
+            <div class="house name-container">{{publishingHouse.name}}</div>
+            <div class="house view-label"><a href="">View</a></div>
+            <div class="house delete-button"><button>Delete</button></div>
+        </div>
+    </div>
 </div>
