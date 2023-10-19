@@ -11,10 +11,21 @@
         <span class="label">Creation Year:</span>
         <span class="value">{{ publishingHouse.creationYear }}</span>
     </div>
-    <div class="button-container">
-        <a class="back-button" href="./publishing-houses">Back</a>
-        <div class="delete-button">
-            <button (click)="onDelete(publishingHouse.id)">Delete</button>
+    <div class="book-list">
+        <h2>Books in this Publishing House</h2>
+        <div class="book-container" *ngFor="let book of books">
+            <div class="book title-container">{{ book.title }}</div>
+            <div class="book author-container">{{ book.author }}</div>
+            <div class="book-button-container">
+                <div class="book book-view-label"><a href="./books/{{ book.id }}">View</a></div>
+                <div class="book book-delete-button">
+                    <button (click)="onDelete(book.id)">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="button-container">
+        <a class="back-button" href="./publishing-houses">Back</a>
+    </div>
+
 </div>
