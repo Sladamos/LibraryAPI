@@ -56,7 +56,7 @@ public class SpringApp {
         final CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Collections.singletonList("*"));
         corsConfig.setMaxAge(3600L);
-        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "PATCH", "DELETE", "PUT"));
         corsConfig.addAllowedHeader("*");
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
