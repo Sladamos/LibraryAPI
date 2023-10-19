@@ -1,3 +1,6 @@
+import { PublishingHouseService } from "../../service/publishing-house-service.js";
+import { DataBinder } from "../../../data-binder.js";
+
 window.addEventListener("load", () => {
   new PublishingHouseListComponent(
     new DataBinder(),

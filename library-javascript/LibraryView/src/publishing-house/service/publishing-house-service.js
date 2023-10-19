@@ -1,11 +1,13 @@
 export class PublishingHouseService {
   getPublishingHouses() {
-    return fetch("/api/publishing-houses").then((response) => {
-      if (response.ok) {
-        return response.json();
+    return fetch("http://localhost:8084/api/publishing-houses").then(
+      (response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network error.");
       }
-      throw new Error("Network error.");
-    });
+    );
   }
 
   deletePublishingHouse(id) {
