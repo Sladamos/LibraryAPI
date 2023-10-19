@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd LibraryView && ng serve --host 0.0.0.0 --disable-host-check"
+    "start": "cd LibraryView && ./node_modules/.bin/ng serve --host 0.0.0.0 --disable-host-check"
   },
   "author": "Slawomir Adamowicz",
   "license": "ISC"

@@ -8,3 +8,5 @@ services:
     tty: true
     volumes:
       - ./:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
