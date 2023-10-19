@@ -22,7 +22,11 @@ public class PublishingHouseEventRestRepository implements PublishingHouseEventR
 
     @Override
     public void delete(UUID id) {
-        restTemplate.delete("/api/publishing-houses/{id}", id);
+        try {
+            restTemplate.delete("/api/publishing-houses/{id}", id);
+        } catch (Exception e) {
+            System.out.println("Other service is disabled");
+        }
     }
 
     @Override

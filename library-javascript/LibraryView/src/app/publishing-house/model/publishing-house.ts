@@ -1,4 +1,5 @@
 export class PublishingHouse {
-  id: number | undefined;
+  id: String = '';
+  creationYear: number | undefined;
   name: String | undefined;
 }

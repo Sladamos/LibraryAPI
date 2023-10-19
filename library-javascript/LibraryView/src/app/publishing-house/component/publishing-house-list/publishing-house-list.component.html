@@ -5,8 +5,8 @@
     <div class="library-content">
         <div class="house-container" *ngFor="let publishingHouse of publishingHouses">
             <div class="house name-container">{{publishingHouse.name}}</div>
-            <div class="house view-label"><a href="">View</a></div>
-            <div class="house delete-button"><button>Delete</button></div>
+            <div class="house view-label"><a href="/publishing-houses/{{publishingHouse.id}}">View</a></div>
+            <div class="house delete-button"><button (click)="onDelete(publishingHouse.id)">Delete</button></div>
         </div>
     </div>
 </div>

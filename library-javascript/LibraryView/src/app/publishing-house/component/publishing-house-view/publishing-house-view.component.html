@@ -1,0 +1,20 @@
+<div class="publishing-house-details">
+    <div class="property">
+        <span class="label">ID:</span>
+        <span class="value">{{ publishingHouse.id }}</span>
+    </div>
+    <div class="property">
+        <span class="label">Name:</span>
+        <span class="value">{{ publishingHouse.name }}</span>
+    </div>
+    <div class="property">
+        <span class="label">Creation Year:</span>
+        <span class="value">{{ publishingHouse.creationYear }}</span>
+    </div>
+    <div class="button-container">
+        <a class="back-button" href="./publishing-houses">Back</a>
+        <div class="delete-button">
+            <button (click)="onDelete(publishingHouse.id)">Delete</button>
+        </div>
+    </div>
+</div>

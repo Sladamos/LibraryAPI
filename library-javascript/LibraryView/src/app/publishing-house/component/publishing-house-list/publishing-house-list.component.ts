@@ -15,7 +15,14 @@ export class PublishingHouseListComponent implements OnInit {
   ngOnInit(): void {
     this.service.findAllPublishingHouses().subscribe((publishingHouses) => {
       this.publishingHouses = publishingHouses.publishingHouses;
-      console.log(this.publishingHouses.length);
+    });
+  }
+
+  onDelete(id: String): void {
+    this.service.deletePublishingHouse(id).subscribe((el) => {
+      this.publishingHouses = this.publishingHouses.filter(
+        (item) => item.id != id
+      );
     });
   }
 }
