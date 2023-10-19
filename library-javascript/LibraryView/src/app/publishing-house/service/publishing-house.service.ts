@@ -6,6 +6,12 @@ import { PublishingHouse } from '../model/publishing-house';
 
 @Injectable({ providedIn: 'root' })
 export class PublishingHouseService {
+  createNew(publishingHouse: PublishingHouse) {
+    return this.http.put<void>(
+      `http://172.17.0.1:8084/api/publishing-houses/${publishingHouse.id}`,
+      publishingHouse
+    );
+  }
   constructor(private http: HttpClient) {}
 
   findPublishingHouse(id: String) {

@@ -8,5 +8,8 @@
     "start": "cd LibraryView && ./node_modules/.bin/ng serve --host 0.0.0.0 --disable-host-check"
   },
   "author": "Slawomir Adamowicz",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
 }

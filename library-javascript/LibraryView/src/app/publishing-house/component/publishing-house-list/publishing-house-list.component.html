@@ -4,9 +4,18 @@
     </header>
     <div class="library-content">
         <div class="house-container" *ngFor="let publishingHouse of publishingHouses">
-            <div class="house name-container">{{publishingHouse.name}}</div>
-            <div class="house view-label"><a href="/publishing-houses/{{publishingHouse.id}}">View</a></div>
-            <div class="house delete-button"><button (click)="onDelete(publishingHouse.id)">Delete</button></div>
+            <div class="house">
+                <div class="house-info">
+                    <div class="house-name">{{publishingHouse.name}}</div>
+                    <div class="house-buttons">
+                        <a class="view-button" href="/publishing-houses/get/{{publishingHouse.id}}">View</a>
+                        <button class="delete-button" (click)="onDelete(publishingHouse.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="add-button-container">
+        <a class="add-button" href="/publishing-houses/create">Add New Publishing House</a>
     </div>
 </div>

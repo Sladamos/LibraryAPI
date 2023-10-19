@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/book/model/books';
 import { BookService } from 'src/app/book/service/book.service';
 import { PublishingHouse } from '../../model/publishing-house';
@@ -18,8 +18,7 @@ export class PublishingHouseViewComponent implements OnInit {
   constructor(
     private booksService: BookService,
     private service: PublishingHouseService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {
     this.route.params.subscribe((params) => (this.id = params['id']));
   }

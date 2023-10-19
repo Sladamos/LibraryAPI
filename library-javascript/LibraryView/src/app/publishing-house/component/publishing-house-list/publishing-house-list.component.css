@@ -1,62 +1,94 @@
+/* General Styles */
+
 .library {
-    display: grid;
+  font-family: Arial, sans-serif;
 }
 
 .library-header {
-    font-size: 24px;
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0px;
-    width: 50%;
-    place-self: center;
-  }
-
-.library-content {
-    place-self: center;
-    width: 50%;
+  background-color: #0077cc;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px;
+  text-align: center;
 }
 
-  .house-container {
-    display: grid;
-    grid-template-columns: 6fr 1fr 1fr;
-    gap: 10px;
-    background-color: pink;
-  }
-  
-  .name-container {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .view-label  {
-    display: flex;
-    text-decoration: none;
-    color: #0077cc;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .houses.view-label a:hover {
-    text-decoration: underline;
-  }
+.library-content {
+  padding: 20px;
+}
 
-  .delete-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .delete-button > button {
-    background-color: #0077cc;
-    color: #fff;
-    border: none;
-    padding: 5px 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .houses.delete-button button:hover {
-    background-color: #005599;
-  }
+.house-container {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.house {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.house-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.house-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.house-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.view-button {
+  text-decoration: none;
+  background-color: #0077cc;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.view-button:hover {
+  background-color: #005599;
+}
+
+.delete-button {
+  background-color: #ff3333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+.add-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-button {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
