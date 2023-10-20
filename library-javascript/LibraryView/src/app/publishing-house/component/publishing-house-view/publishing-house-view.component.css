@@ -57,15 +57,21 @@
   justify-content: space-between;
 }
 
-.book.book-view-label a {
-  text-decoration: none;
-  color: #0077cc;
-  font-weight: bold;
-  margin: 15px;
+.book-view-label {
+  background-color: #0077cc;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+  border-radius: 5px;
 }
 
-.book.book-view-label a:hover {
-  text-decoration: underline;
+.book-view-label > a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.book.book-view-label:hover {
+  background-color: #005599;
 }
 
 .book.book-delete-button button {

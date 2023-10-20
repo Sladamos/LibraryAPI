@@ -8,7 +8,7 @@ import { PublishingHouseViewComponent } from './publishing-house/component/publi
 const routes: Routes = [
   { path: 'publishing-houses', component: PublishingHouseListComponent },
   {
-    path: 'publishing-houses/get/:id',
+    path: 'publishing-houses/:id/content',
     component: PublishingHouseViewComponent,
   },
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
     component: PublishingHouseAddComponent,
   },
   {
-    path: 'publishing-houses/update/:id',
+    path: 'publishing-houses/:id/update',
     component: PublishingHouseUpdateComponent,
   },
 ];

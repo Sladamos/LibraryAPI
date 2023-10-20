@@ -34,13 +34,13 @@ export class PublishingHouseUpdateComponent implements OnInit {
   }
 
   onClickSubmit() {
-    if (this.name != '' && this.creationYear > 0)
+    if (this.name != '' && this.creationYear > 0) {
       this.service
         .update(new PublishingHouse(this.id, this.name, this.creationYear))
         .subscribe((el) => {
-          this.router.navigate([`./publishing-houses/get/${this.id}`]);
+          this.router.navigate([`./publishing-houses/${this.id}/content`]);
         });
-    else {
+    } else {
       window.alert('WROOOOOOOONG');
     }
   }
