@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { PublishingHouseModule } from './publishing-house/publishing-house.module';
+import { BookModule } from './book/book.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { PublishingHouseModule } from './publishing-house/publishing-house.modul
     AppRoutingModule,
     HttpClientModule,
     PublishingHouseModule,
+    BookModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
