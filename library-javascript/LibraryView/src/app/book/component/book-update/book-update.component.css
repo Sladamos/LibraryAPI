@@ -1,0 +1,63 @@
+/* CSS for the advanced update book form */
+.update-book {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    text-align: left;
+  }
+  
+  .update-book h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+  }
+  
+  .form-group {
+    margin: 10px 0;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .back-button {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  /* Additional styles for readonly fields */
+  .input-field[readonly] {
+    background-color: #f7f7f7;
+    color: #555;
+    cursor: not-allowed;
+  }
+  

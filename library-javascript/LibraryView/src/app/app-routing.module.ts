@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookUpdateComponent } from './book/component/book-update/book-update.component';
 import { BookViewComponent } from './book/component/book-view/book-view.component';
 import { PublishingHouseAddComponent } from './publishing-house/component/publishing-house-add/publishing-house-add.component';
 import { PublishingHouseListComponent } from './publishing-house/component/publishing-house-list/publishing-house-list.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'publishing-houses/:id/books/:bookId/content',
     component: BookViewComponent,
+  },
+  {
+    path: 'publishing-houses/:id/books/:bookId/update',
+    component: BookUpdateComponent,
   },
 ];
 
