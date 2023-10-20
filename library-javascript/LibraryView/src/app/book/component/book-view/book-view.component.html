@@ -1,1 +1,12 @@
-<p>book-view works!</p>
+<div class="book-details">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Number of Pages:</strong> {{ book.numberOfPages }}</p>
+    <p class="genres"><strong>Genres:</strong> {{ book.genres.join(', ') }}</p>
+    <p class="publishing-house"><strong>Publishing House:</strong> {{ book.publishingHouse.name }}</p>
+</div>
+
+<div class="return-link">
+    <button class="return-button" (click)="returnToPublishingHouseContent()">Return to Publishing House Content</button>
+</div>

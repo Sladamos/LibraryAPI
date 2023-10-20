@@ -18,7 +18,7 @@
             <div class="book author-container">{{ book.author }}</div>
             <div class="book-button-container">
                 <div class="book book-view-label"><a
-                        href="./publishing-houses/content/{{this.id}}/books/get/{{ book.id }}">View</a></div>
+                        href="./publishing-houses/{{this.id}}/books/{{ book.id }}/content">View</a></div>
                 <div class="book book-delete-button">
                     <button (click)="onDelete(book.id)">Delete</button>
                 </div>

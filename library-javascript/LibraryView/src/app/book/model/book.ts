@@ -1,6 +1,9 @@
 export class PublishingHouse {
   name: String;
-  constructor(name?: String) {
+  id: String;
+
+  constructor(id?: String, name?: String) {
+    this.id = id || '';
     this.name = name || '';
   }
 }
@@ -13,6 +16,7 @@ export class Book {
   numberOfPages: number;
   genres: String[];
   publishingHouse: PublishingHouse;
+
   constructor(
     id?: string,
     title?: string,
