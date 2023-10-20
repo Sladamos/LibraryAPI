@@ -137,3 +137,22 @@
 .edit-button:hover {
   background-color: #ff8000;
 }
+
+
+.add-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-button {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
