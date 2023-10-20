@@ -22,15 +22,16 @@ export class PublishingHouseUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    try {
-      this.service.findPublishingHouse(this.id).subscribe((house) => {
+    this.service.findPublishingHouse(this.id).subscribe({
+      next: (house) => {
         this.id = house.id;
         this.name = house.name;
         this.creationYear = house.creationYear;
-      });
-    } catch (error) {
-      window.alert('BAD ID');
-    }
+      },
+      error: () => {
+        this.router.navigate(['./publishing-houses']);
+      },
+    });
   }
 
   onClickSubmit() {
