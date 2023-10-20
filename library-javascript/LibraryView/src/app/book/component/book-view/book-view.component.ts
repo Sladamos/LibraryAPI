@@ -29,10 +29,20 @@ export class BookViewComponent implements OnInit {
   ngOnInit(): void {
     this.publishingHouseService
       .findPublishingHouse(this.publishingHouseId)
-      .subscribe((house) => {
-        this.service.findBook(this.id).subscribe((book) => {
-          this.book = book;
-        });
+      .subscribe({
+        next: (house) => {
+          this.service.findBook(this.id).subscribe({
+            next: (book) => {
+              this.book = book;
+            },
+            error: () => {
+              this.router.navigate([`./publishing-houses/${house.id}/content`]);
+            },
+          });
+        },
+        error: () => {
+          this.router.navigate([`./publishing-houses/`]);
+        },
       });
   }
 
