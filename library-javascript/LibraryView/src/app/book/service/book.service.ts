@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Book } from '../model/book';
+import { Book, NewBook } from '../model/book';
 import { Books } from '../model/books';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class BookService {
     );
   }
 
-  createNew(book: Book) {
+  createNew(book: NewBook) {
     return this.http.put<void>(
       `http://172.17.0.1:8084/api/books/${book.id}`,
       book
