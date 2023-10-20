@@ -13,6 +13,19 @@ export class BookService {
     return this.http.get<Book>(`http://172.17.0.1:8084/api/books/${id}`);
   }
 
+  update(book: Book) {
+    return this.http.patch<void>(
+      `http://172.17.0.1:8084/api/books/${book.id}`,
+      book
+    );
+  }
+
+  createNew(book: Book) {
+    return this.http.put<void>(
+      `http://172.17.0.1:8084/api/books/${book.id}`,
+      book
+    );
+  }
   findAllBooksByPublishingHouseName(publishingHouseName: String) {
     return this.http.get<Books>(
       `http://172.17.0.1:8084/api/books?publishing-house=${publishingHouseName}`

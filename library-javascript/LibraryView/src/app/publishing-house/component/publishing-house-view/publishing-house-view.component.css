@@ -62,6 +62,7 @@
   padding: 5px 10px;
   transition: background-color 0.3s;
   border-radius: 5px;
+  margin-right: 10px;
 }
 
 .book-view-label > a {
@@ -121,4 +122,18 @@
 
 .delete-button button:hover {
   background-color: #cc0000;
+}
+
+.edit-button {
+  text-decoration: none;
+  background-color: #ff9933;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.edit-button:hover {
+  background-color: #ff8000;
 }
