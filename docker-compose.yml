@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  library-books:
+    build:
+      context: .
+      dockerfile: library-api-books/Ddockockerfile
+    volumes:
+      - "./library-api-books/target:/app"
+    env_file:
+      - enviromental/library-books.env
+    command: [-jar, /app/pg-0.0.1-SNAPSHOT.jar]
+    ports:
+      - 8081:8081
