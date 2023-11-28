@@ -2,4 +2,4 @@ FROM eclipse-temurin:17.0.6_10-jre
 
 WORKDIR /app
 
-ENTRYPOINT [ "java"]
+COPY ./launch_service.sh /scripts/launch.sh

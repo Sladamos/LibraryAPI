@@ -4,11 +4,13 @@ services:
   library-books:
     build:
       context: .
-      dockerfile: library-api-books/Ddockockerfile
+      dockerfile: library-api-books/Dockerfile
     volumes:
       - "./library-api-books/target:/app"
     env_file:
       - enviromental/library-books.env
-    command: [-jar, /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "3", /app/pg-0.0.1-SNAPSHOT.jar]
+    tty: true
+    stdin_open: true
     ports:
       - 8081:8081
