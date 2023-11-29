@@ -10,33 +10,33 @@ export class PublishingHouseService {
 
   update(publishingHouse: PublishingHouse) {
     return this.http.patch<void>(
-      `http://172.17.0.1:8084/api/publishing-houses/${publishingHouse.id}`,
+      `/api/publishing-houses/${publishingHouse.id}`,
       publishingHouse
     );
   }
 
   createNew(publishingHouse: PublishingHouse) {
     return this.http.put<void>(
-      `http://172.17.0.1:8084/api/publishing-houses/${publishingHouse.id}`,
+      `/api/publishing-houses/${publishingHouse.id}`,
       publishingHouse
     );
   }
 
   findPublishingHouse(id: String) {
     return this.http.get<PublishingHouse>(
-      `http://172.17.0.1:8084/api/publishing-houses/${id}`
+      `/api/publishing-houses/${id}`
     );
   }
 
   deletePublishingHouse(id: String) {
     return this.http.delete<void>(
-      `http://172.17.0.1:8084/api/publishing-houses/${id}`
+      `/api/publishing-houses/${id}`
     );
   }
 
   findAllPublishingHouses(): Observable<PublishingHouses> {
     return this.http.get<PublishingHouses>(
-      'http://172.17.0.1:8084/api/publishing-houses'
+      '/api/publishing-houses'
     );
   }
 }

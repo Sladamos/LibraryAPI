@@ -1,11 +1,7 @@
 {
-  "/api/*": {
-    "target": "http://172.17.0.1:8084",
+  "/api": {
+    "target": "http://library-gateway:8084",
     "secure": false,
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/api": ""
-    },
-    "logLevel": "debug"
+    "changeOrigin": true
   }
 }

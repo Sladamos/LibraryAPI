@@ -47,8 +47,10 @@ services:
       - "8085:80"
     depends_on:
       - library-gateway
-    command: [/scripts/launch.sh, "15"]
-
+    volumes:
+      - ./library-javascript/dist/library-view/:/usr/share/nginx/html/
+    command: [/scripts/launch.sh, "60"]
+    
   npm:
     image: node:18
     volumes:
