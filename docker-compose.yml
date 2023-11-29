@@ -36,3 +36,18 @@ services:
       - 8084:8084
     depends_on:
       - library-publishing-houses
+
+  library-angular:
+    build:
+      context: .
+      dockerfile: library-javascript/Dockerfile
+    env_file:
+      - enviromental/library-front.env
+    ports:
+      - "8085:8085"
+
+  npm:
+    image: node:18
+    volumes:
+      - ./library-javascript:/app
+    command: bash /app/build.sh
