@@ -10,8 +10,6 @@ services:
     env_file:
       - enviromental/library-books.env
     command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
-    ports:
-      - 8081:8081
   
   library-publishing-houses:
     build:
@@ -21,8 +19,20 @@ services:
       - "./library-api-publishing-houses/target:/app"
     env_file:
       - enviromental/library-publishing-houses.env
-    command: [/scripts/launch.sh, "10", /app/pg-0.0.1-SNAPSHOT.jar]
-    ports:
-      - 8082:8082
+    command: [/scripts/launch.sh, "20", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - library-books
+  
+  library-gateway:
+    build:
+      context: .
+      dockerfile: library-api-gateway/Dockerfile
+    volumes:
+      - "./library-api-gateway/target:/app"
+    env_file:
+      - enviromental/library-gateway.env
+    command: [/scripts/launch.sh, "40", /app/pg-0.0.1-SNAPSHOT.jar]
+    ports:
+      - 8084:8084
+    depends_on:
+      - library-publishing-houses
