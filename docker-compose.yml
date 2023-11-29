@@ -39,12 +39,15 @@ services:
 
   library-angular:
     build:
-      context: .
-      dockerfile: library-javascript/Dockerfile
+      context: library-javascript
+      dockerfile: Dockerfile
     env_file:
       - enviromental/library-front.env
     ports:
-      - "8085:8085"
+      - "8085:80"
+    depends_on:
+      - library-gateway
+    command: [/scripts/launch.sh, "15"]
 
   npm:
     image: node:18
