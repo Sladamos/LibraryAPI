@@ -1,4 +1,4 @@
-package pg.eti.initialize;
+package pg.eti.book.initialize;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

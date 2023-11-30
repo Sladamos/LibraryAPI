@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @ToString
-@Table(name = "publishing_houses")
+@Table(name = "publishinghouses")
 public class PublishingHouse implements Serializable {
 
 	@Id
