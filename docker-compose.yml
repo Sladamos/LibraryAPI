@@ -34,7 +34,7 @@ services:
     volumes:
       - "./library-api-publishing-houses/target:/app"
     env_file:
-      - enviromental/h2-library-publishing-houses.env
+      - enviromental/postgres-library-publishing-houses.env
     command: [/scripts/launch.sh, "30", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - publishing-houses-db
