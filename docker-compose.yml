@@ -1,6 +1,20 @@
 version: '3'
 
 services:
+  books-db:
+    image: postgres:16.1
+    env_file:
+      - ./enviromental/books-db.env
+    volumes:
+      - books-data:/var/lib/postgresql/data
+
+  publishing-houses-db:
+    image: postgres:16.1
+    env_file:
+      - ./enviromental/publishing-houses-db.env
+    volumes:
+      - publishing-houses-data:/var/lib/postgresql/data
+
   library-books:
     build:
       context: .
@@ -9,7 +23,9 @@ services:
       - "./library-api-books/target:/app"
     env_file:
       - enviromental/library-books.env
-    command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "5", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - books-db
   
   library-publishing-houses:
     build:
@@ -19,8 +35,9 @@ services:
       - "./library-api-publishing-houses/target:/app"
     env_file:
       - enviromental/library-publishing-houses.env
-    command: [/scripts/launch.sh, "20", /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "30", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
+      - publishing-houses-db
       - library-books
   
   library-gateway:
@@ -31,7 +48,7 @@ services:
       - "./library-api-gateway/target:/app"
     env_file:
       - enviromental/library-gateway.env
-    command: [/scripts/launch.sh, "40", /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "50", /app/pg-0.0.1-SNAPSHOT.jar]
     ports:
       - 8084:8084
     depends_on:
@@ -49,10 +66,14 @@ services:
       - library-gateway
     volumes:
       - ./library-javascript/dist/library-view/:/usr/share/nginx/html/
-    command: [/scripts/launch.sh, "60"]
+    command: [/scripts/launch.sh, "70"]
     
   npm:
     image: node:18
     volumes:
       - ./library-javascript:/app
     command: bash /app/build.sh
+
+volumes:
+  publishing-houses-data:
+  books-data:

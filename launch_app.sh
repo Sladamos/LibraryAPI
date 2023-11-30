@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose up library-books library-publishing-houses library-gateway library-angular
+docker-compose up books-db publishing-houses-db library-books library-publishing-houses library-gateway library-angular
