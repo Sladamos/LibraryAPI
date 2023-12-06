@@ -25,7 +25,7 @@ services:
       - enviromental/library-eureka.env
     command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
 
-  library-books:
+  library-books-1:
     build:
       context: .
       dockerfile: library-api-books/Dockerfile
@@ -33,6 +33,25 @@ services:
       - "./library-api-books/target:/app"
     env_file:
       - enviromental/postgres-library-books.env
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://library-eureka:8086/eureka"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+    command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - books-db
+      - library-eureka
+
+  library-books-2:
+    build:
+      context: .
+      dockerfile: library-api-books/Dockerfile
+    volumes:
+      - "./library-api-books/target:/app"
+    env_file:
+      - enviromental/postgres-library-books.env
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://library-eureka:8086/eureka"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
     command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - books-db
