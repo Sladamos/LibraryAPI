@@ -34,7 +34,6 @@ services:
     env_file:
       - enviromental/postgres-library-books.env
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://library-eureka:8086/eureka"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
     command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
@@ -50,8 +49,7 @@ services:
     env_file:
       - enviromental/postgres-library-books.env
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://library-eureka:8086/eureka"
-      EUREKA_INSTANCE_INSTANCE_ID: "1"
+      EUREKA_INSTANCE_INSTANCE_ID: "2"
     command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - books-db
@@ -68,7 +66,7 @@ services:
     command: [/scripts/launch.sh, "40", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - publishing-houses-db
-      - library-books
+      - library-eureka
   
   library-gateway:
     build:
@@ -82,7 +80,7 @@ services:
     ports:
       - 8084:8084
     depends_on:
-      - library-publishing-houses
+      - library-eureka
 
   library-angular:
     build:
@@ -102,7 +100,6 @@ services:
     image: node:18
     volumes:
       - ./library-javascript:/app
-    command: bash /app/build.sh
 
 volumes:
   publishing-houses-data:

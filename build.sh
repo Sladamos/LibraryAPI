@@ -8,7 +8,7 @@ function main() {
     echo gateway
     cd ./library-api-gateway/; sh ./build.sh; cd ..
     echo front
-    docker-compose run --rm npm
+    docker-compose run --rm npm bash /app/build.sh
 }
 
 main
