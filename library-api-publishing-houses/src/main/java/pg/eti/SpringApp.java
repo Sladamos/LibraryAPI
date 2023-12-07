@@ -17,8 +17,8 @@ public class SpringApp {
         SpringApplication.run(SpringApp.class, args);
     }
 
-    @Bean @Qualifier("book")
-    public RestTemplate restTemplate(@Value("${library.book.url}") String baseUrl) {
-        return new RestTemplateBuilder().rootUri(baseUrl).build();
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplateBuilder().build();
     }
 }
