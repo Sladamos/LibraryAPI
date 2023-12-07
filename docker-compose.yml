@@ -24,8 +24,6 @@ services:
     env_file:
       - enviromental/library-eureka.env
     command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
-    ports:
-      - 8086:8086
 
   library-books-1:
     build:
@@ -65,6 +63,8 @@ services:
       - "./library-api-publishing-houses/target:/app"
     env_file:
       - enviromental/postgres-library-publishing-houses.env
+    environment:
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
     command: [/scripts/launch.sh, "40", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - publishing-houses-db
