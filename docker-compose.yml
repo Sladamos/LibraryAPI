@@ -63,7 +63,7 @@ services:
       - "./library-api-publishing-houses/target:/app"
     env_file:
       - enviromental/postgres-library-publishing-houses.env
-    command: [/scripts/launch.sh, "40", /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "50", /app/pg-0.0.1-SNAPSHOT.jar]
     depends_on:
       - publishing-houses-db
       - library-eureka
@@ -76,7 +76,7 @@ services:
       - "./library-api-gateway/target:/app"
     env_file:
       - enviromental/library-gateway.env
-    command: [/scripts/launch.sh, "60", /app/pg-0.0.1-SNAPSHOT.jar]
+    command: [/scripts/launch.sh, "80", /app/pg-0.0.1-SNAPSHOT.jar]
     ports:
       - 8084:8084
     depends_on:
@@ -94,7 +94,7 @@ services:
       - library-gateway
     volumes:
       - ./library-javascript/dist/library-view/:/usr/share/nginx/html/
-    command: [/scripts/launch.sh, "80"]
+    command: [/scripts/launch.sh, "100"]
     
   npm:
     image: node:18

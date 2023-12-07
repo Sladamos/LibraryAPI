@@ -25,21 +25,40 @@ public class SpringApp {
     @Bean
     public RouteLocator routeLocator(
         RouteLocatorBuilder builder,
-        @Value("${library.gateway.host}") String host
+        @Value("${library.gateway.front.host}") String frontHost,
+        @Value("${library.gateway.user.host}") String userHost
     ) {
         return builder
                 .routes()
-                .route("books", route -> route
-                                .host(host)
-                                .and()
-                                .path(
-                                        "/api/books/{id}",
-                                        "/api/books"
-                                )
-                                .uri("lb://library-api-books")
+                .route("fbooks", route -> route
+                        .host(frontHost)
+                        .and()
+                        .path(
+                                "/api/books/{id}",
+                                "/api/books"
                         )
-                .route("publishing-houses", route -> route
-                        .host(host)
+                        .uri("lb://library-api-books")
+                )
+                .route("ubooks", route -> route
+                        .host(userHost)
+                        .and()
+                        .path(
+                                "/api/books/{id}",
+                                "/api/books"
+                        )
+                        .uri("lb://library-api-books")
+                )
+                .route("fpublishing-houses", route -> route
+                        .host(frontHost)
+                        .and()
+                        .path(
+                                "/api/publishing-houses/{id}",
+                                "/api/publishing-houses"
+                        )
+                        .uri("lb://library-api-publishing-houses")
+                )
+                .route("upublishing-houses", route -> route
+                        .host(userHost)
                         .and()
                         .path(
                                 "/api/publishing-houses/{id}",
