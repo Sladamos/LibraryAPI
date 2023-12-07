@@ -24,6 +24,8 @@ services:
     env_file:
       - enviromental/library-eureka.env
     command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
+    ports:
+      - 8086:8086
 
   library-books-1:
     build:
