@@ -92,7 +92,7 @@ services:
       - library-gateway
     volumes:
       - ./library-javascript/dist/library-view/:/usr/share/nginx/html/
-    command: [/scripts/launch.sh, "100"]
+    command: [/scripts/launch.sh, "110"]
     
   npm:
     image: node:18
