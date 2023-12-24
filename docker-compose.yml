@@ -77,8 +77,6 @@ services:
     env_file:
       - enviromental/library-gateway.env
     command: [/scripts/launch.sh, "80", /app/pg-0.0.1-SNAPSHOT.jar]
-    ports:
-      - 8084:8084
     depends_on:
       - library-eureka
 
