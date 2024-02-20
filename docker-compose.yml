@@ -1,0 +1,104 @@
+version: '3'
+
+services:
+  books-db:
+    image: postgres:16.1
+    env_file:
+      - ./enviromental/books-db.env
+    volumes:
+      - books-data:/var/lib/postgresql/data
+
+  publishing-houses-db:
+    image: postgres:16.1
+    env_file:
+      - ./enviromental/publishing-houses-db.env
+    volumes:
+      - publishing-houses-data:/var/lib/postgresql/data
+
+  library-eureka:
+    build:
+      context: .
+      dockerfile: library-api-eureka/Dockerfile
+    volumes:
+      - "./library-api-eureka/target:/app"
+    env_file:
+      - enviromental/library-eureka.env
+    command: [/scripts/launch.sh, "0", /app/pg-0.0.1-SNAPSHOT.jar]
+
+  library-books-1:
+    build:
+      context: .
+      dockerfile: library-api-books/Dockerfile
+    volumes:
+      - "./library-api-books/target:/app"
+    env_file:
+      - enviromental/postgres-library-books.env
+    environment:
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+    command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - books-db
+      - library-eureka
+
+  library-books-2:
+    build:
+      context: .
+      dockerfile: library-api-books/Dockerfile
+    volumes:
+      - "./library-api-books/target:/app"
+    env_file:
+      - enviromental/postgres-library-books.env
+    environment:
+      EUREKA_INSTANCE_INSTANCE_ID: "2"
+    command: [/scripts/launch.sh, "15", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - books-db
+      - library-eureka
+  
+  library-publishing-houses:
+    build:
+      context: .
+      dockerfile: library-api-publishing-houses/Dockerfile
+    volumes:
+      - "./library-api-publishing-houses/target:/app"
+    env_file:
+      - enviromental/postgres-library-publishing-houses.env
+    command: [/scripts/launch.sh, "50", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - publishing-houses-db
+      - library-eureka
+  
+  library-gateway:
+    build:
+      context: .
+      dockerfile: library-api-gateway/Dockerfile
+    volumes:
+      - "./library-api-gateway/target:/app"
+    env_file:
+      - enviromental/library-gateway.env
+    command: [/scripts/launch.sh, "80", /app/pg-0.0.1-SNAPSHOT.jar]
+    depends_on:
+      - library-eureka
+
+  library-angular:
+    build:
+      context: library-javascript
+      dockerfile: Dockerfile
+    env_file:
+      - enviromental/library-front.env
+    ports:
+      - "8085:80"
+    depends_on:
+      - library-gateway
+    volumes:
+      - ./library-javascript/dist/library-view/:/usr/share/nginx/html/
+    command: [/scripts/launch.sh, "110"]
+    
+  npm:
+    image: node:18
+    volumes:
+      - ./library-javascript:/app
+
+volumes:
+  publishing-houses-data:
+  books-data:

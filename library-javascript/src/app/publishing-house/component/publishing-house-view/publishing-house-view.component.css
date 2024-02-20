@@ -1,0 +1,158 @@
+/* Publishing House Details Styles */
+
+.publishing-house-details {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.property {
+  margin: 10px 0;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.value {
+  color: #333;
+}
+
+.book-list {
+  margin-top: 20px;
+  border-top: 2px solid #0077cc;
+  padding-top: 20px;
+}
+
+.book-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.book {
+  flex: 1;
+}
+
+.book.title-container {
+  font-weight: bold;
+  color: #0077cc;
+}
+
+.book.author-container {
+  color: #555;
+}
+
+.book-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book-view-label {
+  background-color: #0077cc;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.book-view-label > a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.book.book-view-label:hover {
+  background-color: #005599;
+}
+
+.book.book-delete-button button {
+  background-color: #ff3333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.book.book-delete-button button:hover {
+  background-color: #cc0000;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #005599;
+}
+
+.delete-button button {
+  background-color: #ff3333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.delete-button button:hover {
+  background-color: #cc0000;
+}
+
+.edit-button {
+  text-decoration: none;
+  background-color: #ff9933;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.edit-button:hover {
+  background-color: #ff8000;
+}
+
+
+.add-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-button {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
