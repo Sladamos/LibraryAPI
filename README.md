@@ -87,6 +87,34 @@ Library API is an application divided into microservices which are deployed on H
 
 Be sure that Docker is installed on your machine.
 
+### Env variables
+
+To properly launch an application, you should create those enviromental files:
+<ul>
+    <li>books-db.env</li>
+    <li>publishing-houses-db.env</li>
+    <li>postgres-library-books.env</li>
+    <li>postgres-library-publishing-houses.env</li>
+    <li>library-eureka.env</li>
+    <li>library-gateway.env</li>
+    <li>library-front.env</li>
+</ul>
+
+Both dbs should contain
+<ul>
+    <li>POSTGRES_DB</li>
+    <li>POSTGRES_USER</li>
+    <li>POSTGRES_PASSWORD</li>
+</ul>
+
+Front should countain:
+```API_URL=http://library-gateway:8084/api/```
+
+Other env can be created based on proper application.properties. If you want to have access to API from your browser, write this line in library-gateway.env:
+```LIBRARY_GATEWAY_USER_HOST=localhost:8084```
+
+If you have any troubles with your URLs check Docker documentation about networks.
+
 ### Installation
 
 1. Clone the repo
